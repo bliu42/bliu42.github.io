@@ -186,7 +186,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-09-05 16:53:21 / 修改时间：16:56:03" itemprop="dateCreated datePublished" datetime="2021-09-05T16:53:21+08:00">2021-09-05</time>
+              <time title="创建时间：2021-09-05 16:53:21 / 修改时间：16:57:03" itemprop="dateCreated datePublished" datetime="2021-09-05T16:53:21+08:00">2021-09-05</time>
             </span>
 
           
@@ -203,52 +203,14 @@
           <blockquote>
 <p>虽然写了很多次Python代码了，但是今天才第一次用了jupyter notebook。体验很好！尤其是在VS Code上写也很方便！后悔没有早点整。试着把ipynb转化成markdown发出来。</p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> scipy.linalg <span class="keyword">import</span> logm</span><br><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> log, log2</span><br><span class="line"><span class="keyword">from</span> qutip <span class="keyword">import</span> *</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Generate random positive matrix.</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">positive</span>(<span class="params">n</span>):</span></span><br><span class="line">    size = <span class="number">2</span>**n</span><br><span class="line">    f = <span class="literal">True</span></span><br><span class="line">    <span class="keyword">while</span> f:</span><br><span class="line">        A = np.random.rand(size, size)</span><br><span class="line">        B = np.dot(A,A.transpose())</span><br><span class="line">        <span class="keyword">if</span> np.linalg.det(B)&gt;<span class="number">0</span>:</span><br><span class="line">            f = <span class="literal">False</span></span><br><span class="line">    <span class="keyword">return</span> Qobj(B).unit()</span><br><span class="line"><span class="comment"># Calculate the von Neumann entropy.</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">entropy1</span>(<span class="params">r,l</span>):</span></span><br><span class="line">    n1 = <span class="number">2</span>**l</span><br><span class="line">    n2 = r.shape[<span class="number">0</span>]/n1</span><br><span class="line">    r.dims = [[n1,n2],[n1,n2]]</span><br><span class="line">    r = r.ptrace(<span class="number">0</span>).data.toarray()</span><br><span class="line">    e = <span class="number">0</span></span><br><span class="line">    eig = np.linalg.eig(r)[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> eig:</span><br><span class="line">        e = e - i*log(i)</span><br><span class="line">    <span class="keyword">return</span> e</span><br><span class="line"><span class="comment"># Another way to get von Neumann entropy.</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">entropy2</span>(<span class="params">r,l</span>):</span></span><br><span class="line">    n1 = <span class="number">2</span>**l</span><br><span class="line">    n2 = r.shape[<span class="number">0</span>]/n1</span><br><span class="line">    r.dims = [[n1,n2],[n1,n2]]</span><br><span class="line">    r = r.ptrace(<span class="number">0</span>).data.toarray()</span><br><span class="line">    <span class="keyword">return</span> -r.dot(logm(r)).trace()</span><br></pre></td></tr></table></figure>
-
-
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># MPO entanglement entropy</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">entropy3</span>(<span class="params">r,l</span>):</span></span><br><span class="line">    N = <span class="built_in">int</span>(log2(r.shape[<span class="number">0</span>]))</span><br><span class="line">    r = r.data.toarray()</span><br><span class="line">    r.shape = (<span class="number">4</span>**l, <span class="number">4</span>**(N-l))</span><br><span class="line">    e = np.linalg.svd(r)[<span class="number">1</span>]</span><br><span class="line">    <span class="built_in">print</span>(e)</span><br><span class="line">    s = <span class="number">0</span></span><br><span class="line">    x = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> e:</span><br><span class="line">        s = s + i**<span class="number">2</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> e:</span><br><span class="line">        x = x - j**<span class="number">2</span>/s*log(j**<span class="number">2</span>/s)</span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line">n = <span class="number">5</span></span><br><span class="line">t = positive(n)</span><br><span class="line">l = <span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(entropy1(t,l),entropy2(t,l))<span class="comment"># Should give the same result!</span></span><br><span class="line"><span class="built_in">print</span>(entropy3(t,l))<span class="comment"># smaller??</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<pre><code>(0.691544729961066+0j) (0.6915447299610658-0j)
-[0.77255193 0.05111087 0.02378289 0.02279776 0.02116593 0.01713215
- 0.01654386 0.01534614 0.01410231 0.01200234 0.01039346 0.00975371
- 0.00857747 0.00789916 0.0064416  0.00569655]
-0.07208414678695106
-
-
-/Users/tinaliu/opt/anaconda3/envs/qai/lib/python3.7/site-packages/ipykernel_launcher.py:20: ComplexWarning: Casting complex values to real discards the imaginary part
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 最大混合态，密度矩阵为单位矩阵</span></span><br><span class="line">mixed = Qobj(np.identity(<span class="number">2</span>**n)).unit()</span><br><span class="line"><span class="built_in">print</span>(mixed,mixed.shape)</span><br><span class="line"><span class="built_in">print</span>(entropy1(mixed,l),entropy2(mixed,l),entropy3(mixed,l))</span><br><span class="line"><span class="comment"># ???为啥MPO这么大</span></span><br></pre></td></tr></table></figure>
-
-<pre><code>Quantum object: dims = [[32], [32]], shape = (32, 32), type = oper, isherm = True
-Qobj data =
-[[0.03125 0.      0.      ... 0.      0.      0.     ]
- [0.      0.03125 0.      ... 0.      0.      0.     ]
- [0.      0.      0.03125 ... 0.      0.      0.     ]
- ...
- [0.      0.      0.      ... 0.03125 0.      0.     ]
- [0.      0.      0.      ... 0.      0.03125 0.     ]
- [0.      0.      0.      ... 0.      0.      0.03125]] (32, 32)
-[0.04419417 0.04419417 0.04419417 0.04419417 0.04419417 0.04419417
- 0.04419417 0.04419417 0.04419417 0.04419417 0.04419417 0.04419417
- 0.04419417 0.04419417 0.04419417 0.04419417]
-(1.3862943611198906+0j) (1.3862943611198906-0j) 2.772588722239781
-
-
-/Users/tinaliu/opt/anaconda3/envs/qai/lib/python3.7/site-packages/ipykernel_launcher.py:20: ComplexWarning: Casting complex values to real discards the imaginary part
-</code></pre>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 证明positive产生的是Hermi的矩阵</span></span><br><span class="line">a1 = positive(<span class="number">2</span>)</span><br><span class="line"><span class="built_in">print</span>(a1,a1.isherm)</span><br></pre></td></tr></table></figure>
-
-<pre><code>Quantum object: dims = [[4], [4]], shape = (4, 4), type = oper, isherm = True
-Qobj data =
-[[0.15783164 0.11837268 0.20016582 0.18640858]
- [0.11837268 0.09334076 0.15351045 0.14088947]
- [0.20016582 0.15351045 0.44382064 0.34524712]
- [0.18640858 0.14088947 0.34524712 0.30500696]] True
-</code></pre>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/09/05/%E7%BA%A0%E7%BC%A0%E7%86%B5%E8%AE%A1%E7%AE%97/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
