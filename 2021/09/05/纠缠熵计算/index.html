@@ -20,28 +20,34 @@
     var CONFIG = {"hostname":"bliu42.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":250,"display":"always","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Cameologist">
-<meta property="og:url" content="https://bliu42.github.io/index.html">
+  <meta name="description" content="虽然写了很多次Python代码了，但是今天才第一次用了jupyter notebook。体验很好！尤其是在VS Code上写也很方便！后悔没有早点整。试着把ipynb转化成markdown发出来。  1234import numpy as npfrom scipy.linalg import logmfrom math import log, log2from qutip import *">
+<meta property="og:type" content="article">
+<meta property="og:title" content="纠缠熵计算">
+<meta property="og:url" content="https://bliu42.github.io/2021/09/05/%E7%BA%A0%E7%BC%A0%E7%86%B5%E8%AE%A1%E7%AE%97/index.html">
 <meta property="og:site_name" content="Cameologist">
+<meta property="og:description" content="虽然写了很多次Python代码了，但是今天才第一次用了jupyter notebook。体验很好！尤其是在VS Code上写也很方便！后悔没有早点整。试着把ipynb转化成markdown发出来。  1234import numpy as npfrom scipy.linalg import logmfrom math import log, log2from qutip import *">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-09-05T08:53:21.000Z">
+<meta property="article:modified_time" content="2021-09-05T08:56:03.090Z">
 <meta property="article:author" content="Tina Liu">
+<meta property="article:tag" content="码">
+<meta property="article:tag" content="entanglement">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://bliu42.github.io/">
+<link rel="canonical" href="https://bliu42.github.io/2021/09/05/%E7%BA%A0%E7%BC%A0%E7%86%B5%E8%AE%A1%E7%AE%97/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>Cameologist</title>
+  <title>纠缠熵计算 | Cameologist</title>
   
 
 
@@ -155,9 +161,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -173,10 +180,9 @@
       <meta itemprop="name" content="Cameologist">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/05/%E7%BA%A0%E7%BC%A0%E7%86%B5%E8%AE%A1%E7%AE%97/" class="post-title-link" itemprop="url">纠缠熵计算</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          纠缠熵计算
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -190,6 +196,13 @@
             </span>
 
           
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
 
         </div>
       </header>
@@ -200,7 +213,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <blockquote>
+        <blockquote>
 <p>虽然写了很多次Python代码了，但是今天才第一次用了jupyter notebook。体验很好！尤其是在VS Code上写也很方便！后悔没有早点整。试着把ipynb转化成markdown发出来。</p>
 </blockquote>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> scipy.linalg <span class="keyword">import</span> logm</span><br><span class="line"><span class="keyword">from</span> math <span class="keyword">import</span> log, log2</span><br><span class="line"><span class="keyword">from</span> qutip <span class="keyword">import</span> *</span><br></pre></td></tr></table></figure>
@@ -249,480 +262,34 @@ Qobj data =
  [0.18640858 0.14088947 0.34524712 0.30500696]] True
 </code></pre>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/%E7%A0%81/" rel="tag"># 码</a>
+              <a href="/tags/entanglement/" rel="tag"># entanglement</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://bliu42.github.io/2021/09/02/entanglement/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://raw.githubusercontent.com/bliu42/BlogImages/main/avatar.jpg">
-      <meta itemprop="name" content="Tina Liu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cameologist">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/02/entanglement/" class="post-title-link" itemprop="url">开放系统：量子纠缠的度量</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-09-02 17:03:41" itemprop="dateCreated datePublished" datetime="2021-09-02T17:03:41+08:00">2021-09-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-04 11:35:17" itemprop="dateModified" datetime="2021-09-04T11:35:17+08:00">2021-09-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%A7%91%E7%A0%94%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">科研笔记</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>A note on different measures of the mixed-state entanglement.</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/02/entanglement/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://bliu42.github.io/2021/08/31/%E5%BC%80%E6%94%BE%E7%B3%BB%E7%BB%9F%E9%87%8F%E5%AD%90%E7%BA%A0%E7%BC%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://raw.githubusercontent.com/bliu42/BlogImages/main/avatar.jpg">
-      <meta itemprop="name" content="Tina Liu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cameologist">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/31/%E5%BC%80%E6%94%BE%E7%B3%BB%E7%BB%9F%E9%87%8F%E5%AD%90%E7%BA%A0%E7%BC%A0/" class="post-title-link" itemprop="url">开放系统：密度矩阵和主方程</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-31 12:27:57" itemprop="dateCreated datePublished" datetime="2021-08-31T12:27:57+08:00">2021-08-31</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-05 13:51:03" itemprop="dateModified" datetime="2021-09-05T13:51:03+08:00">2021-09-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%A7%91%E7%A0%94%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">科研笔记</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>A note on open system quantum mechanics.</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/31/%E5%BC%80%E6%94%BE%E7%B3%BB%E7%BB%9F%E9%87%8F%E5%AD%90%E7%BA%A0%E7%BC%A0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/09/02/entanglement/" rel="prev" title="开放系统：量子纠缠的度量">
+      <i class="fa fa-chevron-left"></i> 开放系统：量子纠缠的度量
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://bliu42.github.io/2021/08/29/%E5%85%B3%E4%BA%8E%E6%95%B0%E7%94%B5%E7%9A%84%E9%81%A5%E8%BF%9C%E8%AE%B0%E5%BF%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://raw.githubusercontent.com/bliu42/BlogImages/main/avatar.jpg">
-      <meta itemprop="name" content="Tina Liu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cameologist">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/29/%E5%85%B3%E4%BA%8E%E6%95%B0%E7%94%B5%E7%9A%84%E9%81%A5%E8%BF%9C%E8%AE%B0%E5%BF%86/" class="post-title-link" itemprop="url">关于数电的遥远记忆</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-08-29 10:37:02 / 修改时间：11:23:36" itemprop="dateCreated datePublished" datetime="2021-08-29T10:37:02+08:00">2021-08-29</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>最近遇到了好几次FPGA这几个字母。这是我在数字电子技术结课之后仍然留有印象的几种缩写之一。虽然我知道其全名为现场可编程门阵列，但实际上它对我来说仍然是一种神秘的东西。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/29/%E5%85%B3%E4%BA%8E%E6%95%B0%E7%94%B5%E7%9A%84%E9%81%A5%E8%BF%9C%E8%AE%B0%E5%BF%86/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://bliu42.github.io/2021/08/09/ETHandMBL/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://raw.githubusercontent.com/bliu42/BlogImages/main/avatar.jpg">
-      <meta itemprop="name" content="Tina Liu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cameologist">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/09/ETHandMBL/" class="post-title-link" itemprop="url">Brief Review on ETH and MBL</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-09 16:35:43" itemprop="dateCreated datePublished" datetime="2021-08-09T16:35:43+08:00">2021-08-09</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-03 09:22:04" itemprop="dateModified" datetime="2021-09-03T09:22:04+08:00">2021-09-03</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="0-写在前面"><a href="#0-写在前面" class="headerlink" title="0 写在前面"></a>0 写在前面</h1><p>由于本人开始在家办公，故网站开发暂停。<br>不过这里姑且还是具有博客基本功能的个人网站，故把目前关注的话题的笔记放在这里。</p>
-<p>本文是对Eigenstate Thermalization Hypothesis (ETH) 和Many-body Localization (MBL)的简要复习。<br>因为我学习参考的文献是英文，也没有读过中文的相关文献，故为免去术语翻译上可能的困难，以下将有选择性地使用英文。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/09/ETHandMBL/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://bliu42.github.io/2021/08/02/first/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://raw.githubusercontent.com/bliu42/BlogImages/main/avatar.jpg">
-      <meta itemprop="name" content="Tina Liu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cameologist">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/02/first/" class="post-title-link" itemprop="url">互联网小屋的搭建与装修-好用的工具与踩过的坑汇总</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-02 12:06:36" itemprop="dateCreated datePublished" datetime="2021-08-02T12:06:36+08:00">2021-08-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-02 09:37:20" itemprop="dateModified" datetime="2021-09-02T09:37:20+08:00">2021-09-02</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/coding/" itemprop="url" rel="index"><span itemprop="name">coding</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>如果八方旅人有Mac版，那么此地将不存在于任何时空。</p>
-</blockquote>
-<p>大家好，我是Tina。今年暑假的旅游计划被天灾和疫情扼杀在摇篮里了，学校又出于防疫考虑，暂时拒绝让我返校。<br>因此靠着家中极其有限的网络连接（还有我家附近的网吧——KFC和碰碰凉），年轻人第一次尝试搭建自己的网站。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/02/first/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://bliu42.github.io/2021/08/01/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://raw.githubusercontent.com/bliu42/BlogImages/main/avatar.jpg">
-      <meta itemprop="name" content="Tina Liu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cameologist">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/08/01/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-08-01 11:36:00" itemprop="dateCreated datePublished" datetime="2021-08-01T11:36:00+08:00">2021-08-01</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
   
 
 
@@ -946,59 +513,6 @@ Qobj data =
   
 
   
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
-    
 
   
 
