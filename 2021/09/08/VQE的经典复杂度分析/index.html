@@ -28,8 +28,9 @@
 <meta property="og:description" content="是关于一篇以前读过的2020年的Nature Physics论文的复习。作者是Sergey Bravyi等人。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//2020_NP_table.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//%E6%88%AA%E5%B1%8F2021-09-08%20%E4%B8%8B%E5%8D%884.50.54.png">
 <meta property="article:published_time" content="2021-09-08T03:46:07.000Z">
-<meta property="article:modified_time" content="2021-09-08T04:18:03.261Z">
+<meta property="article:modified_time" content="2021-09-08T09:01:47.259Z">
 <meta property="article:author" content="Tina Liu">
 <meta property="article:tag" content="Entanglement">
 <meta property="article:tag" content="QuantumAdvantage">
@@ -194,7 +195,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-09-08 11:46:07 / 修改时间：12:18:03" itemprop="dateCreated datePublished" datetime="2021-09-08T11:46:07+08:00">2021-09-08</time>
+              <time title="创建时间：2021-09-08 11:46:07 / 修改时间：17:01:47" itemprop="dateCreated datePublished" datetime="2021-09-08T11:46:07+08:00">2021-09-08</time>
             </span>
 
           
@@ -218,12 +219,38 @@
         <p>是关于一篇以前读过的2020年的Nature Physics<a target="_blank" rel="noopener" href="http://dx.doi.org/10.1038/s41567-020-01109-8">论文</a>的复习。作者是Sergey Bravyi等人。</p>
 <span id="more"></span>
 
-<h1 id="Intro和结论"><a href="#Intro和结论" class="headerlink" title="Intro和结论"></a>Intro和结论</h1><p>求量子算符的平均值的问题大概可以写成如下形式：n比特量子线路$U$中测量厄米算符$\hat O$的平均值$\mu$为:<br>$$<br>\mu \equiv \langle 0^n|U^\dagger \hat O U|0^n\rangle<br>$$</p>
+<h1 id="1-Intro和结论"><a href="#1-Intro和结论" class="headerlink" title="1. Intro和结论"></a>1. Intro和结论</h1><p>求量子算符的平均值的问题大概可以写成如下形式：n比特量子线路$U$中测量厄米算符$\hat O$的平均值$\mu$为:<br>$$<br>\mu \equiv \langle 0^n|U^\dagger \hat O U|0^n\rangle \tag{1}<br>$$</p>
 <p>计算算符的平均值在量子计算中应用很广。比如VQE(variational<br>quantum eigensolver)、量子模拟和量子机器学习。</p>
 <p>为了了解计算量子算符平均值问题，量子计算机是否优于经典计算机，这篇论文探讨了不同的经典算法下平均值问题关于<strong>线路深度</strong>、<strong>量子比特关联度</strong>以及$\hat O$<strong>的结构</strong>的计算复杂度。</p>
-<p>这篇论文得到的结果是，量子计算系统也许没有人们之前所考虑得那么powerful。对于2D和3D量子比特系统中<strong>constant-depth线路</strong>用特定经典算法模拟平均值计算的复杂度仅为$\mathcal O (n)$和$2^{\mathcal O(n^{1/3})}$。为了在平均值问题上超越经典模拟，需要<strong>super-constant depth</strong>的量子线路（比如$d \sim \log n$），或者<strong>不能被2D网格局域描述的量子比特关联</strong>，或者是求<strong>不能被poly(n)的算符张量积线性组合所描述的算符</strong>的平均值。</p>
+<p>这篇论文得到的结果是，至少浅层量子计算系统也许没有人们之前所考虑得那么powerful。对于2D和3D量子比特系统中<strong>constant-depth线路</strong>用特定经典算法模拟平均值计算的复杂度仅为$\mathcal O (n)$和$2^{\mathcal O(n^{1/3})}$。为了在平均值问题上超越经典模拟，需要<strong>super-constant depth</strong>的量子线路（比如$d \sim \log n$），或者<strong>不能被2D网格局域描述的量子比特关联</strong>，或者是求<strong>不能被poly(n)的算符张量积线性组合所描述的算符</strong>的平均值。</p>
 <p>论文的主要结论如下表：<br><img src="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//2020_NP_table.png" alt="png"></p>
-<h1 id="算法1"><a href="#算法1" class="headerlink" title="算法1"></a>算法1</h1>
+<h1 id="2-因规律与光锥"><a href="#2-因规律与光锥" class="headerlink" title="2. 因规律与光锥"></a>2. 因规律与光锥</h1><p>有限深的量子线路中，假设信息的传播速度是一定的（即每一层线路的关联长度是一定的），那么信息就仅仅在光锥中传递。光锥的大仙取决于线路的深度。</p>
+<p>具体地来说，设$U$是$d$层的单比特和双比特门构成的线路，每一层内的门都作用在互不重叠的比特上。设$\mathcal A_j$是关于<strong>仅仅非平凡地作用在第$j$个比特上</strong>的所有$n$比特算符的一个代数。$n$比特的一个子集$\mathcal L(j) \subseteq [n]$就被称为是比特$j$的一个光锥。$\mathcal L(j)$需要满足以下条件：定义局域化的线路$U_{loc}$为从$U$中移除所有至少作用在一个$\mathcal L(j)$以外的比特的门的线路。那么就有：<br>$$<br>U^{\dagger} O U=U_{\mathrm{loc}}(j)^{\dagger} O U_{\mathrm{loc}}(j) \text { for all } O \in \mathcal{A}_{j}\tag{2}<br>$$<br>也就是说对于$\mathcal A_j$中单比特算符的平均值的计算可以在更有限的光锥$\mathcal L(j)$中计算，而光锥外的门对均值没有影响。或者说，$U^{\dagger} O U$仅仅非平凡地作用在光锥中的这些比特上。如果只有单、双比特门，那光锥的尺度由线路深度$d$限制$|\mathcal L(j)|\leq 2^d$.后文中考虑的系统可以定义在图$\mathcal G$上，每一个顶点上放置比特且比特间的门仅仅作用在图上相邻的顶点间。定义范围$r$来描述的$U$的局域性：$U$的范围$r$定义为满足$j$的$r$邻域能够包括$j$比特所有的光锥的最小整数。或者说，在图上$j$和$\mathcal L(j)$中任意比特最大距离为$r$。</p>
+<h1 id="3-算法1"><a href="#3-算法1" class="headerlink" title="3. 算法1"></a>3. 算法1</h1><p>根据因果律定理$(2)$，可以将$\mu=\left\langle 0^{n}\left|U^{\dagger} O_{1} \otimes \cdots \otimes O_{n} U\right| 0^{n}\right\rangle$的平均值简化为：<br>$$<br>\mu=\left\langle 0^{n}\left|U_{A}^{\dagger} U_{B}\right| 0^{n}\right\rangle \tag{3}<br>$$<br>（如何简化，在后文讨论）<br>这样，就可以将其写成概率分布$\pi(x)$和一个复数函数$F(x)$的形式，然后应用蒙特卡洛方法去估计$\mu$了：<br>$$<br>\mu=\sum_{x \in{0,1}^{n}}\left\langle 0^{n}\left|U_{A}^{\dagger}\right| x\right\rangle\left\langle x\left|U_{B}\right| 0^{n}\right\rangle=\sum_{x \in{0,1}^{n}} \pi(x) F(x) \tag{4}<br>$$<br>其中$\pi(x) = \gamma_A^{-1}|\langle x|U_A|0^n \rangle|^2$, $F(x)=\gamma_{A}\left\langle x\left|U_{B}\right| 0^{n}\right\rangle\left\langle x\left|U_{A}\right| 0^{n}\right\rangle^{-1}$. 这样一来求$\mu$就变成在一定的概率分布$\pi(x)$下求$F(x)$的期望了。根据切比雪夫不等式，多次独立重复试验估计的值为：<br>$$<br>\tilde{\mu}=S^{-1} \sum_{i=1}^{S} F\left(x^{i}\right) \tag{5}<br>$$<br>其中$S$为独立重复的次数，$S = \mathcal O(\delta^{-2})$.对$x$进行抽样以及计算$F(x)$需要经典算法能够模拟投影到$U_A|0^n\rangle$的测量和计算振幅$U_A|0^n\rangle$和$U_A|0^n\rangle$。由于$U_A$和$U_B$的结构，这些计算可以在$\mathcal O(n)$时间内完成。（在文后附的Methods一节有简单文字介绍。）</p>
+<h2 id="3-1-U-A-和-U-B-的构造"><a href="#3-1-U-A-和-U-B-的构造" class="headerlink" title="3.1 $U_A$和$U_B$的构造"></a>3.1 $U_A$和$U_B$的构造</h2><p>首先，将2D的量子比特阵列分割成竖条${A_i}$和${B_i}$，效果如下图：<br><img src="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//%E6%88%AA%E5%B1%8F2021-09-08%20%E4%B8%8B%E5%8D%884.50.54.png" alt="png"><br>其中每一个$A_i$和$B_i$的宽度都为$4r$，而$A_i^0$和$B_i^0$都位于对应的竖条中央，宽度都为$2r$。这样就可以确保，$A_i^0$和$B_i^0$中的每一个比特的光锥，都位于对应的$A_i$和$B_i$内部。因此对仅仅非平凡地作用于第$j$个比特的算符$O(j)=O_{j} \otimes I_{\text {else}}$来说，有：<br>$$<br>U_{A, i} =\prod_{j \in A_{i}^{0}} U_{\operatorname{loc}}(j)^{\dagger} O(j)^{\dagger} U_{\operatorname{loc}}(j) \text { and }<br>$$</p>
+<p>$$<br>U_{B, i} =\prod_{j \in B_{i}^{0}} U_{\operatorname{loc}}(j)^{\dagger} O(j) U_{\mathrm{loc}}(j)<br>$$</p>
+<h2 id="3-2-关于计算复杂度的比较"><a href="#3-2-关于计算复杂度的比较" class="headerlink" title="3.2 关于计算复杂度的比较"></a>3.2 关于计算复杂度的比较</h2><p>与最好的张量网络算法相比，论文中的算法1在2D和3D情况下的复杂度：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>算法1</th>
+<th>张量网络</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2D</td>
+<td>$\mathcal O(n r^{2} \delta^{-2}) 2^{m(r)}$</td>
+<td>$2^{\mathcal O(\sqrt n)}$</td>
+</tr>
+<tr>
+<td>3D</td>
+<td>$\mathcal O(n r^{3} \delta^{-2}) 2^{m(r)n^{1/3}}$</td>
+<td>$2^{\mathcal O(n^{n2/3})}$</td>
+</tr>
+</tbody></table>
+<p>其中$m(r) = 6r^2-r+1$，是算法1需要模拟的比特数。</p>
+
     </div>
 
     
@@ -304,7 +331,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Intro%E5%92%8C%E7%BB%93%E8%AE%BA"><span class="nav-text">Intro和结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%97%E6%B3%951"><span class="nav-text">算法1</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Intro%E5%92%8C%E7%BB%93%E8%AE%BA"><span class="nav-text">1. Intro和结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E5%9B%A0%E8%A7%84%E5%BE%8B%E4%B8%8E%E5%85%89%E9%94%A5"><span class="nav-text">2. 因规律与光锥</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E7%AE%97%E6%B3%951"><span class="nav-text">3. 算法1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-U-A-%E5%92%8C-U-B-%E7%9A%84%E6%9E%84%E9%80%A0"><span class="nav-text">3.1 $U_A$和$U_B$的构造</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E5%85%B3%E4%BA%8E%E8%AE%A1%E7%AE%97%E5%A4%8D%E6%9D%82%E5%BA%A6%E7%9A%84%E6%AF%94%E8%BE%83"><span class="nav-text">3.2 关于计算复杂度的比较</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
