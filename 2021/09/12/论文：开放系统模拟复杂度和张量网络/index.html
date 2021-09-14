@@ -20,21 +20,22 @@
     var CONFIG = {"hostname":"bliu42.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":250,"display":"always","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="A note on different measures of the mixed-state entanglement.">
+  <meta name="description" content="Luchnikov, I. A., Vintskevich, S. V., Ouerdane, H., &amp; Filippov, S. N. (2019). Simulation Complexity of Open Quantum Dynamics: Connection with Tensor Networks. Physical Review Letters, 122(16), 160">
 <meta property="og:type" content="article">
-<meta property="og:title" content="开放系统：量子纠缠的度量">
-<meta property="og:url" content="https://bliu42.github.io/2021/09/02/entanglement/index.html">
+<meta property="og:title" content="论文：开放系统模拟复杂度和张量网络">
+<meta property="og:url" content="https://bliu42.github.io/2021/09/12/%E8%AE%BA%E6%96%87%EF%BC%9A%E5%BC%80%E6%94%BE%E7%B3%BB%E7%BB%9F%E6%A8%A1%E6%8B%9F%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%92%8C%E5%BC%A0%E9%87%8F%E7%BD%91%E7%BB%9C/index.html">
 <meta property="og:site_name" content="Cameologist">
-<meta property="og:description" content="A note on different measures of the mixed-state entanglement.">
+<meta property="og:description" content="Luchnikov, I. A., Vintskevich, S. V., Ouerdane, H., &amp; Filippov, S. N. (2019). Simulation Complexity of Open Quantum Dynamics: Connection with Tensor Networks. Physical Review Letters, 122(16), 160">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-09-02T09:03:41.000Z">
-<meta property="article:modified_time" content="2021-09-07T03:08:44.475Z">
+<meta property="article:published_time" content="2021-09-12T04:27:57.000Z">
+<meta property="article:modified_time" content="2021-09-14T13:27:23.842Z">
 <meta property="article:author" content="Tina Liu">
-<meta property="article:tag" content="Entanglement">
 <meta property="article:tag" content="OpenSystem">
+<meta property="article:tag" content="Paper">
+<meta property="article:tag" content="TensorNetwork">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://bliu42.github.io/2021/09/02/entanglement/">
+<link rel="canonical" href="https://bliu42.github.io/2021/09/12/%E8%AE%BA%E6%96%87%EF%BC%9A%E5%BC%80%E6%94%BE%E7%B3%BB%E7%BB%9F%E6%A8%A1%E6%8B%9F%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%92%8C%E5%BC%A0%E9%87%8F%E7%BD%91%E7%BB%9C/">
 
 
 <script id="page-configurations">
@@ -47,7 +48,7 @@
   };
 </script>
 
-  <title>开放系统：量子纠缠的度量 | Cameologist</title>
+  <title>论文：开放系统模拟复杂度和张量网络 | Cameologist</title>
   
 
 
@@ -127,7 +128,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">7</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -137,7 +138,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">7</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">8</span></a>
 
   </li>
   </ul>
@@ -168,7 +169,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://bliu42.github.io/2021/09/02/entanglement/">
+    <link itemprop="mainEntityOfPage" href="https://bliu42.github.io/2021/09/12/%E8%AE%BA%E6%96%87%EF%BC%9A%E5%BC%80%E6%94%BE%E7%B3%BB%E7%BB%9F%E6%A8%A1%E6%8B%9F%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%92%8C%E5%BC%A0%E9%87%8F%E7%BD%91%E7%BB%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://raw.githubusercontent.com/bliu42/BlogImages/main/avatar.jpg">
@@ -181,7 +182,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          开放系统：量子纠缠的度量
+          论文：开放系统模拟复杂度和张量网络
         </h1>
 
         <div class="post-meta">
@@ -191,14 +192,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-09-02 17:03:41" itemprop="dateCreated datePublished" datetime="2021-09-02T17:03:41+08:00">2021-09-02</time>
+              <time title="创建时间：2021-09-12 12:27:57" itemprop="dateCreated datePublished" datetime="2021-09-12T12:27:57+08:00">2021-09-12</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-07 11:08:44" itemprop="dateModified" datetime="2021-09-07T11:08:44+08:00">2021-09-07</time>
+                <time title="修改时间：2021-09-14 21:27:23" itemprop="dateModified" datetime="2021-09-14T21:27:23+08:00">2021-09-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -228,60 +229,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <blockquote>
-<p>A note on different measures of the mixed-state entanglement.</p>
-</blockquote>
+        <p>Luchnikov, I. A., Vintskevich, S. V., Ouerdane, H., &amp; Filippov, S. N. (2019). Simulation Complexity of Open Quantum Dynamics: Connection with Tensor Networks. Physical Review Letters, 122(16), 160401. <a target="_blank" rel="noopener" href="https://doi.org/10.1103/PhysRevLett.122.160401">https://doi.org/10.1103/PhysRevLett.122.160401</a></p>
 <span id="more"></span>
-
-<p>Entanglement is a property of bipartite systems—systems consisting of two parts A and B that are too far apart to interact, and whose state, pure or mixed, lies in a Hilbert space $\mathcal H_A \otimes \mathcal H_B$ that is the tensor product of Hilbert spaces of these parts.</p>
-<p>For pure states there exists many reliable ways to measure the entanglement, while for mixed states, the measures are not equivalent and sometimes ill-defined.</p>
-<h1 id="1-Necessary-Conditions-for-Entanglement-Measure"><a href="#1-Necessary-Conditions-for-Entanglement-Measure" class="headerlink" title="1. Necessary Conditions for Entanglement Measure"></a>1. Necessary Conditions for Entanglement Measure</h1><h2 id="1-1-LOCC-operations"><a href="#1-1-LOCC-operations" class="headerlink" title="1.1 LOCC operations"></a>1.1 LOCC operations</h2><p><em>Local Operations (LO):</em> Performed in two seperate parts and described by two sets of operators $\sum_i A_i^\dagger A_i = I$ and $\sum_j B_j^\dagger B_j = I$. The joint action is $\sum_{ij} A_i \otimes B_j$ .</p>
-<p><em>Classical Communication (CC):</em> The action of A and B is classical correlated. A LOCC operation would be like:<br>$$\rho_{AB} \to \sum_i (A_i\otimes B_i) \rho_{AB} (A_i^\dagger \otimes B_i^\dagger)\tag{1.1}$$</p>
-<blockquote>
-<p><strong>Theorem:</strong> All entangled states can be turned into an ensemble of maximally entangled states using LOCC.</p>
-</blockquote>
-<h2 id="1-2-Necessary-conditions-1"><a href="#1-2-Necessary-conditions-1" class="headerlink" title="1.2 Necessary conditions[^1]"></a>1.2 Necessary conditions[^1]</h2><p>[^1]:V. Vedral, M. B. Plenio, M. A. Rippin, and P. L. Knight. (1997). Quantifying Entanglement. Phys. Rev. Lett. 78, 2275. <a target="_blank" rel="noopener" href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.78.2275">https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.78.2275</a></p>
-<p>A good measure of entanglement $E(\sigma)$ must satisfy:</p>
-<ul>
-<li>$E(\sigma) = 0$ iff $\sigma$ is separable.</li>
-<li>Local unitary operations leave $E(\sigma)$ invariant, i.e., $E(\sigma)=E[(U_A\otimes U_B) \sigma (U_A^\dagger U_B^\dagger)]$.</li>
-<li>LOCC <strong>cannot increase</strong> $E(\sigma)$, i.e., $E(\Theta \sigma)\leq E(\sigma)$, with $\Theta$ a LOCC action. This is because any correlations achieved by LOCC is classical and therefore should not be included in a good measure.</li>
-</ul>
-<blockquote>
-<p><strong>Note:</strong> The third condition is not always true for most well-known measures of entanglement entropy because they also contain classical correlations.</p>
-</blockquote>
-<h1 id="2-Several-Entanglement-Measures-for-Mixed-States"><a href="#2-Several-Entanglement-Measures-for-Mixed-States" class="headerlink" title="2. Several Entanglement Measures for Mixed States"></a>2. Several Entanglement Measures for Mixed States</h1><h2 id="2-1-Schmidt-Rank-and-Schmidt-Coefficients"><a href="#2-1-Schmidt-Rank-and-Schmidt-Coefficients" class="headerlink" title="2.1 Schmidt Rank and Schmidt Coefficients"></a>2.1 Schmidt Rank and Schmidt Coefficients</h2><p>(Copied from the previous note:)</p>
-<blockquote>
-<blockquote>
-<p><strong>Theorem:</strong> For any vector $v$ in Hilbert space $\mathcal H_1 \otimes \mathcal H_2$, there exist orthonormal sets on each space ${u_i^1},{u_i^2}$ with $1 \leq i \leq m\leq min{D_1,D_2}$, such that $v$ can be written as $v=\sum_{i=1}^m a_i u_i^1\otimes u_i^2$ with $a_i$ non-negative.</p>
-</blockquote>
-<p>The number $m$ of vectors needed for the decomposition is called the <strong>Schmidt rank</strong> and the ${a_i}$ are <strong>Schimdt coefficients</strong>. If the Schmidt rank of a vector is one, the associate state is separable.</p>
-</blockquote>
-<p>So the Schmidt rank can be used to quantify the entanglement in pure states. Whether it is a useful measure of mixed states remains unknown.</p>
-<blockquote>
-<p><strong>Note:</strong> Schmidt coefficients are invariant under local unitary operations.<br>Proof: $v=\sum_{i=1}^m a_i u_i^1\otimes u_i^2 \to \sum_{i=1}^m a_i (U_A u_i^1)\otimes (U_B u_i^2)$. So it also describes the entangle of the state.</p>
-</blockquote>
-<h2 id="2-2-MPO-Entanglement-Entropy-2"><a href="#2-2-MPO-Entanglement-Entropy-2" class="headerlink" title="2.2 MPO Entanglement Entropy[^2]"></a>2.2 MPO Entanglement Entropy[^2]</h2><p>[^2]:Noh, K., Jiang, L., &amp; Fefferman, B. (2020). Efficient classical simulation of noisy random quantum circuits in one dimension. Quantum, 4. <a target="_blank" rel="noopener" href="https://doi.org/10.22331/Q-2020-09-11-318">https://doi.org/10.22331/Q-2020-09-11-318</a></p>
-<p>The MPO entanglement entropy is defined to describe the entanglement entropy of mixed states. In this paper[^2], it is called MPO EE because it is defined in a Matrix Product Operator tensor network. For a general mixed state, its definition is based on the Schmidt decomposition of the density matrix. </p>
-<p>Suppose we are interested in a system with $n$ 2-level particles, and want to get the correlation between the left $l$ particles and the rest of the system. We can reshape the density matrix to $D_l \otimes D_{(n-l)}$ and use SVD to find the singular values $\lambda_i$ (Schimdt coefficients). MPO entanglement entropy is defined as:<br>$$<br>\mathcal{S}<em>{l}(\rho) \equiv-\sum</em>{\alpha_{l}=0}^{\chi-1} \frac{\left(\lambda_{\alpha_{l}}^{[l]}\right)^{2}}{\sum_{\beta_{l}=0}^{\chi-1}\left(\lambda_{\beta_{l}}^{[l]}\right)^{2}} \log <em>{2}\left(\frac{\left(\lambda</em>{\alpha_{l}}^{[l]}\right)^{2}}{\sum_{\beta_{l}=0}^{\chi-1}\left(\lambda_{\beta_{l}}^{[l]}\right)^{2}}\right)<br>$$<br>The SVD will give $\chi = mim{2^l,2^{(n-l)}}$ sigular values.</p>
-<h2 id="2-2-Von-Neumann-Entropy"><a href="#2-2-Von-Neumann-Entropy" class="headerlink" title="2.2 Von Neumann Entropy"></a>2.2 Von Neumann Entropy</h2><p>The von Neumann entropy is a well-known entanglement measure for pure states. However for a mixed density matrix we can still define the von Neumann entropy:</p>
-<p>$$<br>S_{A} \equiv -\operatorname{tr} \rho_{A} \log \rho_{A}\tag{2.1}<br>$$</p>
-<p>From the Schmidt decomposition, we can easily get $S_A = S_B$.</p>
-<p>This quantity can be interpreted as the number of entangled bits between A and B, and $e^{S_A}$ counts the number of entangled states.</p>
-<p>From the view of open quantum system (which is what I am concerned so far), we can say that:</p>
-<p>Given a state $\rho_A$ with entanglement entropy $S_A$, the quantity $e^{S_A}$ is the minimal number of auxiliary states that we would need to entangle with A in order to obtain $\rho_A$ from a pure state of the enlarged system.</p>
-<p>The von Neumann entropy works well for pure states, but for mixed states it contains both quantum and classical correlations.</p>
-<blockquote>
-<p><strong>Note:</strong> Maximally entangled state $\rho_{AB}$ gives a maximally mixed state $\rho_A \propto I$ after partial trace. You can try.</p>
-</blockquote>
-<blockquote>
-<p><strong>Also Note:</strong> The outcome of partial trace is irrelevant to the basis you choose. <del>You can also try</del>.</p>
-</blockquote>
-<h3 id="2-2-1-Renyi-Entropy"><a href="#2-2-1-Renyi-Entropy" class="headerlink" title="2.2.1 Renyi Entropy"></a>2.2.1 Renyi Entropy</h3><p>The $\alpha$ Renyi entropy is defined as:<br>$$S_\alpha(\rho) = (1-\alpha)^{-1}log \text{Tr}\rho^\alpha \tag{3.1}$$<br>Here $\alpha \geq 0$. If $\alpha \to 1$, Renyi entropy goes to the von Neumann entropy.</p>
-<h2 id="2-3-Entanglement-of-Formation-3"><a href="#2-3-Entanglement-of-Formation-3" class="headerlink" title="2.3 Entanglement of Formation[^3]"></a>2.3 Entanglement of Formation[^3]</h2><p>[^3]:Bennett, C. H., DiVincenzo, D. P., Smolin, J. A., &amp; Wootters, W. K. (1996). Mixed-state entanglement and quantum error correction. Physical Review A - Atomic, Molecular, and Optical Physics, 54(5), 3824–3851. <a target="_blank" rel="noopener" href="https://doi.org/10.1103/PhysRevA.54.3824">https://doi.org/10.1103/PhysRevA.54.3824</a></p>
-<p>For a mixed state, there are infinite ways to decompose it into pure state ensemble. One of the way to evaluate the entangle in mixed states is defined as the least expected entanglement of any ensemble of pure states realizing.<br>$$<br>E(\rho):=\min \sum_{i} p_{i} S\left(\rho_{A}^{i}\right)<br>$$</p>
-<p>It can be prooved that the entanglement of formation is nonincreasing under LOCC.</p>
-<p>It it not easy to find the ensemble with smallest entangle in general cases. In 2 spin1/2 particles, such ensembles are diagnal when written in Bell basis.</p>
+<p>TRN, Timeline reservoir network</p>
+<p>Semi group</p>
+<p>Poincare recurrence time: the time it takes for the system to go back to the current state.<br>For thermalized system it is infinity.</p>
+<p>Non-Markovian open system dynamics: system and environment time scales not separable</p>
+<p>??Correlation Function</p>
+<p>Time scales: reservoir correlation timescale and dynamic timescale</p>
+<p>Lamb shift?? splits the and states which are otherwise degenerate. </p>
+<p>Why Renyi entropy??</p>
 
     </div>
 
@@ -291,8 +248,9 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Entanglement/" rel="tag"># Entanglement</a>
               <a href="/tags/OpenSystem/" rel="tag"># OpenSystem</a>
+              <a href="/tags/Paper/" rel="tag"># Paper</a>
+              <a href="/tags/TensorNetwork/" rel="tag"># TensorNetwork</a>
           </div>
 
         
@@ -301,12 +259,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/08/31/%E5%BC%80%E6%94%BE%E7%B3%BB%E7%BB%9F%E9%87%8F%E5%AD%90%E7%BA%A0%E7%BC%A0/" rel="prev" title="开放系统：密度矩阵和主方程">
-      <i class="fa fa-chevron-left"></i> 开放系统：密度矩阵和主方程
+    <a href="/2021/09/08/VQE%E7%9A%84%E7%BB%8F%E5%85%B8%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/" rel="prev" title="VQE的经典复杂度分析">
+      <i class="fa fa-chevron-left"></i> VQE的经典复杂度分析
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/09/08/VQE%E7%9A%84%E7%BB%8F%E5%85%B8%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/" rel="next" title="VQE的经典复杂度分析">
-      VQE的经典复杂度分析 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/09/14/%E8%AE%BA%E6%96%87%EF%BC%9AEntanglementWitness/" rel="next" title="论文：Entanglement Witness">
+      论文：Entanglement Witness <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -366,7 +324,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Necessary-Conditions-for-Entanglement-Measure"><span class="nav-text">1. Necessary Conditions for Entanglement Measure</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-LOCC-operations"><span class="nav-text">1.1 LOCC operations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Necessary-conditions-1"><span class="nav-text">1.2 Necessary conditions[^1]</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Several-Entanglement-Measures-for-Mixed-States"><span class="nav-text">2. Several Entanglement Measures for Mixed States</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Schmidt-Rank-and-Schmidt-Coefficients"><span class="nav-text">2.1 Schmidt Rank and Schmidt Coefficients</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-MPO-Entanglement-Entropy-2"><span class="nav-text">2.2 MPO Entanglement Entropy[^2]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-Von-Neumann-Entropy"><span class="nav-text">2.2 Von Neumann Entropy</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-Renyi-Entropy"><span class="nav-text">2.2.1 Renyi Entropy</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-Entanglement-of-Formation-3"><span class="nav-text">2.3 Entanglement of Formation[^3]</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -382,7 +339,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -395,7 +352,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
