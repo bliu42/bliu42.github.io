@@ -20,25 +20,22 @@
     var CONFIG = {"hostname":"bliu42.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":250,"display":"always","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="是关于一篇以前读过的2020年的Nature Physics论文的复习。作者是Sergey Bravyi等人。">
+  <meta name="description" content="Luchnikov, I. A., Vintskevich, S. V., Ouerdane, H., &amp; Filippov, S. N. (2019). Simulation Complexity of Open Quantum Dynamics: Connection with Tensor Networks. Physical Review Letters, 122(16), 160">
 <meta property="og:type" content="article">
-<meta property="og:title" content="VQE的经典复杂度分析">
-<meta property="og:url" content="https://bliu42.github.io/2021/09/08/VQE%E7%9A%84%E7%BB%8F%E5%85%B8%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/index.html">
+<meta property="og:title" content="论文：开放系统模拟复杂度和张量网络">
+<meta property="og:url" content="https://bliu42.github.io/2021/09/12/%E8%AE%BA%E6%96%87%EF%BC%9A%E5%BC%80%E6%94%BE%E7%B3%BB%E7%BB%9F%E6%A8%A1%E6%8B%9F%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%92%8C%E5%BC%A0%E9%87%8F%E7%BD%91%E7%BB%9C/index.html">
 <meta property="og:site_name" content="Cameologist">
-<meta property="og:description" content="是关于一篇以前读过的2020年的Nature Physics论文的复习。作者是Sergey Bravyi等人。">
+<meta property="og:description" content="Luchnikov, I. A., Vintskevich, S. V., Ouerdane, H., &amp; Filippov, S. N. (2019). Simulation Complexity of Open Quantum Dynamics: Connection with Tensor Networks. Physical Review Letters, 122(16), 160">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//2020_NP_table.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//%E6%88%AA%E5%B1%8F2021-09-08%20%E4%B8%8B%E5%8D%884.50.54.png">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//%E6%88%AA%E5%B1%8F2021-09-08%20%E4%B8%8B%E5%8D%888.07.20.png">
-<meta property="article:published_time" content="2021-09-08T03:46:07.000Z">
-<meta property="article:modified_time" content="2021-09-09T05:46:09.457Z">
+<meta property="article:published_time" content="2021-09-12T04:27:57.000Z">
+<meta property="article:modified_time" content="2021-09-14T13:27:23.842Z">
 <meta property="article:author" content="Tina Liu">
-<meta property="article:tag" content="Entanglement">
-<meta property="article:tag" content="QuantumAdvantage">
+<meta property="article:tag" content="OpenSystem">
+<meta property="article:tag" content="Paper">
+<meta property="article:tag" content="TensorNetwork">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//2020_NP_table.png">
 
-<link rel="canonical" href="https://bliu42.github.io/2021/09/08/VQE%E7%9A%84%E7%BB%8F%E5%85%B8%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/">
+<link rel="canonical" href="https://bliu42.github.io/2021/09/12/%E8%AE%BA%E6%96%87%EF%BC%9A%E5%BC%80%E6%94%BE%E7%B3%BB%E7%BB%9F%E6%A8%A1%E6%8B%9F%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%92%8C%E5%BC%A0%E9%87%8F%E7%BD%91%E7%BB%9C/">
 
 
 <script id="page-configurations">
@@ -51,7 +48,7 @@
   };
 </script>
 
-  <title>VQE的经典复杂度分析 | Cameologist</title>
+  <title>论文：开放系统模拟复杂度和张量网络 | Cameologist</title>
   
 
 
@@ -131,7 +128,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">12</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -141,7 +138,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">11</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">8</span></a>
 
   </li>
   </ul>
@@ -172,7 +169,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://bliu42.github.io/2021/09/08/VQE%E7%9A%84%E7%BB%8F%E5%85%B8%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/">
+    <link itemprop="mainEntityOfPage" href="https://bliu42.github.io/2021/09/12/%E8%AE%BA%E6%96%87%EF%BC%9A%E5%BC%80%E6%94%BE%E7%B3%BB%E7%BB%9F%E6%A8%A1%E6%8B%9F%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%92%8C%E5%BC%A0%E9%87%8F%E7%BD%91%E7%BB%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://raw.githubusercontent.com/bliu42/BlogImages/main/avatar.jpg">
@@ -185,7 +182,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          VQE的经典复杂度分析
+          论文：开放系统模拟复杂度和张量网络
         </h1>
 
         <div class="post-meta">
@@ -195,14 +192,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-09-08 11:46:07" itemprop="dateCreated datePublished" datetime="2021-09-08T11:46:07+08:00">2021-09-08</time>
+              <time title="创建时间：2021-09-12 12:27:57" itemprop="dateCreated datePublished" datetime="2021-09-12T12:27:57+08:00">2021-09-12</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-09 13:46:09" itemprop="dateModified" datetime="2021-09-09T13:46:09+08:00">2021-09-09</time>
+                <time title="修改时间：2021-09-14 21:27:23" itemprop="dateModified" datetime="2021-09-14T21:27:23+08:00">2021-09-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -232,53 +229,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <blockquote>
-<p>是关于一篇以前读过的2020年的Nature Physics<a target="_blank" rel="noopener" href="http://dx.doi.org/10.1038/s41567-020-01109-8">论文</a>的复习。作者是Sergey Bravyi等人。</p>
-</blockquote>
+        <p>Luchnikov, I. A., Vintskevich, S. V., Ouerdane, H., &amp; Filippov, S. N. (2019). Simulation Complexity of Open Quantum Dynamics: Connection with Tensor Networks. Physical Review Letters, 122(16), 160401. <a target="_blank" rel="noopener" href="https://doi.org/10.1103/PhysRevLett.122.160401">https://doi.org/10.1103/PhysRevLett.122.160401</a></p>
 <span id="more"></span>
-
-<h1 id="1-Intro和结论"><a href="#1-Intro和结论" class="headerlink" title="1. Intro和结论"></a>1. Intro和结论</h1><p>求量子算符的平均值的问题大概可以写成如下形式：n比特量子线路$U$中测量厄米算符$\hat O$的平均值$\mu$为:<br>$$<br>\mu \equiv \langle 0^n|U^\dagger \hat O U|0^n\rangle \tag{1}<br>$$</p>
-<p>计算算符的平均值在量子计算中应用很广。比如VQE(variational<br>quantum eigensolver)、量子模拟和量子机器学习。</p>
-<p>为了了解在计算量子算符平均值问题上，量子计算机是否优于经典计算机，这篇论文探讨了不同的经典算法下平均值问题关于<strong>线路深度</strong>、<strong>量子比特关联度</strong>以及$\hat O$<strong>的结构</strong>的计算复杂度。</p>
-<p>这篇论文得到的结果是，至少浅层量子计算系统也许没有人们之前所考虑得那么powerful。对于2D和3D量子比特系统中<strong>constant-depth线路</strong>用特定经典算法模拟平均值计算的复杂度仅为$\mathcal O (n)$和$2^{\mathcal O(n^{1/3})}$。为了在平均值问题上超越经典模拟，需要<strong>super-constant depth</strong>的量子线路（比如$d \sim \log n$），或者<strong>不能被2D网格局域描述的量子比特关联</strong>，或者是求<strong>不能被poly(n)的算符张量积线性组合所描述的算符</strong>的平均值。</p>
-<p>论文的主要结论如下表：<br><img src="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//2020_NP_table.png" alt="png"></p>
-<h1 id="2-因果律与光锥"><a href="#2-因果律与光锥" class="headerlink" title="2. 因果律与光锥"></a>2. 因果律与光锥</h1><p>有限深的量子线路中，假设信息的传播速度是一定的（即每一层线路的关联长度是一定的），那么信息就仅仅在光锥中传递。光锥的大小取决于线路的深度。</p>
-<p>具体地来说，设$U$是$d$层的单比特和双比特门构成的线路，每一层内的门都作用在互不重叠的比特上。设$\mathcal A_j$是关于<strong>仅仅非平凡地作用在第$j$个比特上</strong>的所有$n$比特算符的一个代数。$n$比特的一个子集$\mathcal L(j) \subseteq [n]$就被称为是比特$j$的一个光锥。$\mathcal L(j)$需要满足以下条件：定义局域化的线路$U_{loc}$为从$U$中移除所有至少作用在一个$\mathcal L(j)$以外的比特的门的线路。那么就有：<br>$$<br>U^{\dagger} O U=U_{\mathrm{loc}}(j)^{\dagger} O U_{\mathrm{loc}}(j) \text { for all } O \in \mathcal{A}_{j}\tag{2}<br>$$<br>也就是说对于$\mathcal A_j$中单比特算符的平均值的计算可以在更有限的光锥$\mathcal L(j)$中计算，而光锥外的门对均值没有影响。或者说，$U^{\dagger} O U$仅仅非平凡地作用在光锥中的这些比特上。如果只有单、双比特门，那光锥的尺度由线路深度$d$限制$|\mathcal L(j)|\leq 2^d$.后文中考虑的系统可以定义在图$\mathcal G$上，每一个顶点上放置比特且比特间的门仅仅作用在图上相邻的顶点间。定义范围$r$来描述的$U$的局域性：$U$的范围$r$定义为满足$j$的$r$邻域能够包括$j$比特所有的光锥的最小整数。或者说，在图上$j$和$\mathcal L(j)$中任意比特最大距离为$r$。</p>
-<h1 id="3-算法1"><a href="#3-算法1" class="headerlink" title="3. 算法1"></a>3. 算法1</h1><p>根据因果律定理$(2)$，可以将$\mu=\left\langle 0^{n}\left|U^{\dagger} O_{1} \otimes \cdots \otimes O_{n} U\right| 0^{n}\right\rangle$的平均值简化为：<br>$$<br>\mu=\left\langle 0^{n}\left|U_{A}^{\dagger} U_{B}\right| 0^{n}\right\rangle \tag{3}<br>$$<br>（如何简化，在后文讨论）<br>这样，就可以将其写成概率分布$\pi(x)$和一个复数函数$F(x)$的形式，然后应用蒙特卡洛方法去估计$\mu$了：<br>$$<br>\mu=\sum_{x \in{0,1}^{n}}\left\langle 0^{n}\left|U_{A}^{\dagger}\right| x\right\rangle\left\langle x\left|U_{B}\right| 0^{n}\right\rangle=\sum_{x \in{0,1}^{n}} \pi(x) F(x) \tag{4}<br>$$<br>其中$\pi(x) = \gamma_A^{-1}|\langle x|U_A|0^n \rangle|^2$, $F(x)=\gamma_{A}\left\langle x\left|U_{B}\right| 0^{n}\right\rangle\left\langle x\left|U_{A}\right| 0^{n}\right\rangle^{-1}$. 注意因为这里求的是$|O_j|\leq 1$，因此$\gamma_{A} \equiv | U_{A}|0^{n} \rangle |^{2} \leq 1$以及$\gamma_{B} \equiv | U_{B}|0^{n}\rangle |^{2} \leq 1$。这样一来求$\mu$就变成在一定的概率分布$\pi(x)$下求$F(x)$的期望了。</p>
-<p>根据切比雪夫不等式，多次独立重复试验估计的值为：<br>$$<br>\tilde{\mu}=S^{-1} \sum_{i=1}^{S} F\left(x^{i}\right) \tag{5}<br>$$<br>其中$S$为独立重复的次数，$S = \mathcal O(\delta^{-2})$.对$x$进行抽样以及计算$F(x)$需要经典算法能够模拟投影到$U_A|0^n\rangle$的测量和计算振幅$U_A|0^n\rangle$和$U_A|0^n\rangle$。由于$U_A$和$U_B$的结构，这些计算可以在$\mathcal O(n)$时间内完成。（在文后附的Methods一节有简单文字介绍，在后面讲。）</p>
-<h2 id="3-1-U-A-和-U-B-的构造"><a href="#3-1-U-A-和-U-B-的构造" class="headerlink" title="3.1 $U_A$和$U_B$的构造"></a>3.1 $U_A$和$U_B$的构造</h2><p>首先，将2D的量子比特阵列分割成竖条${A_i}$和${B_i}$，效果如下图：<br><img src="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//%E6%88%AA%E5%B1%8F2021-09-08%20%E4%B8%8B%E5%8D%884.50.54.png" alt="png"><br>其中每一个$A_i$和$B_i$的宽度都为$4r$，而$A_i^0$和$B_i^0$都位于对应的竖条中央，宽度都为$2r$。这样就可以确保，$A_i^0$和$B_i^0$中的每一个比特的光锥，都位于对应的$A_i$和$B_i$内部。因此对仅仅非平凡地作用于第$j$个比特的算符$O(j)=O_{j} \otimes I_{\text {else}}$来说，有：<br>$$<br>U_{A, i} =\prod_{j \in A_{i}^{0}} U_{\operatorname{loc}}(j)^{\dagger} O(j)^{\dagger} U_{\operatorname{loc}}(j) \text { and }\tag{6}<br>$$</p>
-<p>$$<br>U_{B, i} =\prod_{j \in B_{i}^{0}} U_{\operatorname{loc}}(j)^{\dagger} O(j) U_{\mathrm{loc}}(j)\tag{7}<br>$$</p>
-<p>那么$(3)$中的$U_A$和$U_B$就是：<br>$$<br>U_{A}=\bigotimes_{i} U_{A, i} \text { and } U_{B}=\bigotimes_{i} U_{B, i}\tag{8}<br>$$<br>可以通过因果律定理$(2)$证明，$U_{A}^{\dagger} U_{B}=\prod_{j=1}^{n} U^{\dagger} O(j) U=U^{\dagger}\left(O_{1} \otimes \cdots \otimes O_{n}\right) U$。</p>
-<h2 id="3-2-关于计算复杂度的比较"><a href="#3-2-关于计算复杂度的比较" class="headerlink" title="3.2 关于计算复杂度的比较"></a>3.2 关于计算复杂度的比较</h2><p>与最好的张量网络算法相比，论文中的算法1在2D和3D情况下的复杂度：</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>算法1</th>
-<th>张量网络</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>2D</td>
-<td>$\mathcal O(n r^{2} \delta^{-2}) 2^{m(r)}$</td>
-<td>$2^{\mathcal O(\sqrt n)}$</td>
-</tr>
-<tr>
-<td>3D</td>
-<td>$\mathcal O(n r^{3} \delta^{-2}) 2^{m(r)n^{1/3}}$</td>
-<td>$2^{\mathcal O(n^{2/3})}$</td>
-</tr>
-</tbody></table>
-<p>其中$m(r) = 6r^2-r+1$，是算法1需要模拟的比特数。</p>
-<h2 id="3-3-计算-U-A-U-B-：准一维线路的态矢模拟"><a href="#3-3-计算-U-A-U-B-：准一维线路的态矢模拟" class="headerlink" title="3.3 计算$U_A, U_B$：准一维线路的态矢模拟"></a>3.3 计算$U_A, U_B$：准一维线路的态矢模拟</h2><p>这里是一种计算准一维线路的一种经典算法。前面出现的$U_A, U_B$就是准一维的线路。以上图中一个部分$U_{A,i}$的模拟为例，首先将$m$个比特按照行优先进行编号，并将$U_{A,i}$按照$(6)$中求和的形式分成$m$层。模拟是按照比特编号逐个进行模拟。每一个比特的模拟步骤如下：</p>
-<ul>
-<li>将比特加载到模拟器，立刻初始化成$|0\rangle$；</li>
-<li>把对其有非平凡作用的算符一层一层作用上去；</li>
-<li>立刻对其进行测量，测量结束就立刻将其移出模拟器。</li>
-</ul>
-<p>设$m(r)$为每一步加载到模拟器中的最大量子比特数目，$m(r) = \mathcal O(r^2)$。态矢模拟器的每一次门操作/测量操作都需要$\sim 2^{m(r)}$的时间。这样，整个$U_A$的模拟复杂度就是$\mathcal O(nr^2)2^{m(r)}$.外推到3D的情况就是$\mathcal O(nr^3)2^{m(r)n^{1/3}}$（使用了一个$n^{1/3}$的register）。</p>
-<p>根据下图所示简单的几何，可以得到$m(r) = 6r^2-r+1$。（严重怀疑这里给错了，因为根据他的“简单的几何”，我得到$m(1) = 5, m(2) = 13$.）<br><img src="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//%E6%88%AA%E5%B1%8F2021-09-08%20%E4%B8%8B%E5%8D%888.07.20.png" alt="png"></p>
-<h1 id="4-关于估计误差"><a href="#4-关于估计误差" class="headerlink" title="4. 关于估计误差"></a>4. 关于估计误差</h1><p>本文中讨论的估计误差$\delta$，都是指的可加误差，即$|\tilde{\mu}-\mu| \leq \delta$。但是还存在另一种误差的定义：相对误差，即$\mathrm{e}^{-\delta} \mu \leq|\tilde{\mu}-\mu| \leq \mathrm{e}^{\delta} \mu$。根据在0附近$e^\delta \to 1+\delta$，显然相同数值的相对误差和可加误差至少需要同样的计算量。实际上这个问题是#P Hard的，因此对于constant-depth线路和$\delta = \mathcal O(1)$是困难的。</p>
+<p>TRN, Timeline reservoir network</p>
+<p>Semi group</p>
+<p>Poincare recurrence time: the time it takes for the system to go back to the current state.<br>For thermalized system it is infinity.</p>
+<p>Non-Markovian open system dynamics: system and environment time scales not separable</p>
+<p>??Correlation Function</p>
+<p>Time scales: reservoir correlation timescale and dynamic timescale</p>
+<p>Lamb shift?? splits the and states which are otherwise degenerate. </p>
+<p>Why Renyi entropy??</p>
 
     </div>
 
@@ -288,8 +248,9 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Entanglement/" rel="tag"># Entanglement</a>
-              <a href="/tags/QuantumAdvantage/" rel="tag"># QuantumAdvantage</a>
+              <a href="/tags/OpenSystem/" rel="tag"># OpenSystem</a>
+              <a href="/tags/Paper/" rel="tag"># Paper</a>
+              <a href="/tags/TensorNetwork/" rel="tag"># TensorNetwork</a>
           </div>
 
         
@@ -298,12 +259,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/09/02/%E5%BC%80%E6%94%BE%E7%B3%BB%E7%BB%9F%EF%BC%9A%E9%87%8F%E5%AD%90%E7%BA%A0%E7%BC%A0%E7%9A%84%E5%BA%A6%E9%87%8F/" rel="prev" title="开放系统：量子纠缠的度量">
-      <i class="fa fa-chevron-left"></i> 开放系统：量子纠缠的度量
+    <a href="/2021/09/08/VQE%E7%9A%84%E7%BB%8F%E5%85%B8%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/" rel="prev" title="VQE的经典复杂度分析">
+      <i class="fa fa-chevron-left"></i> VQE的经典复杂度分析
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/09/12/%E8%AE%BA%E6%96%87%EF%BC%9A%E5%BC%80%E6%94%BE%E7%B3%BB%E7%BB%9F%E6%A8%A1%E6%8B%9F%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%92%8C%E5%BC%A0%E9%87%8F%E7%BD%91%E7%BB%9C/" rel="next" title="论文：开放系统模拟复杂度和张量网络">
-      论文：开放系统模拟复杂度和张量网络 <i class="fa fa-chevron-right"></i>
+    <a href="/2021/09/14/%E8%AE%BA%E6%96%87%EF%BC%9AEntanglementWitness/" rel="next" title="论文：Entanglement Witness">
+      论文：Entanglement Witness <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -363,7 +324,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Intro%E5%92%8C%E7%BB%93%E8%AE%BA"><span class="nav-text">1. Intro和结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E5%9B%A0%E6%9E%9C%E5%BE%8B%E4%B8%8E%E5%85%89%E9%94%A5"><span class="nav-text">2. 因果律与光锥</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E7%AE%97%E6%B3%951"><span class="nav-text">3. 算法1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-U-A-%E5%92%8C-U-B-%E7%9A%84%E6%9E%84%E9%80%A0"><span class="nav-text">3.1 $U_A$和$U_B$的构造</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E5%85%B3%E4%BA%8E%E8%AE%A1%E7%AE%97%E5%A4%8D%E6%9D%82%E5%BA%A6%E7%9A%84%E6%AF%94%E8%BE%83"><span class="nav-text">3.2 关于计算复杂度的比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E8%AE%A1%E7%AE%97-U-A-U-B-%EF%BC%9A%E5%87%86%E4%B8%80%E7%BB%B4%E7%BA%BF%E8%B7%AF%E7%9A%84%E6%80%81%E7%9F%A2%E6%A8%A1%E6%8B%9F"><span class="nav-text">3.3 计算$U_A, U_B$：准一维线路的态矢模拟</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E5%85%B3%E4%BA%8E%E4%BC%B0%E8%AE%A1%E8%AF%AF%E5%B7%AE"><span class="nav-text">4. 关于估计误差</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -379,7 +339,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -392,7 +352,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
