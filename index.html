@@ -72,7 +72,119 @@
   </style>
 </noscript>
 
-</head>
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -184,10 +296,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-10-18 15:22:52 / 修改时间：15:28:53" itemprop="dateCreated datePublished" datetime="2021-10-18T15:22:52+08:00">2021-10-18</time>
+              <time title="创建时间：2021-10-18 15:22:52" itemprop="dateCreated datePublished" datetime="2021-10-18T15:22:52+08:00">2021-10-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-10-20 11:28:58" itemprop="dateModified" datetime="2021-10-20T11:28:58+08:00">2021-10-20</time>
+              </span>
 
           
 
@@ -201,6 +319,9 @@
 
       
           <p>我的笔记中的数学公式在本地的vs code上显示都是正常的，完全不影响阅读，到网页上会变成乱码or报错。因为不太影响本地的使用体验，并且实在搞不定<del>（不想搞好麻烦）</del>，我决定放弃解决网页显示问题。如果对笔记感兴趣，可以邮件我索要pdf版本。</p>
+<hr>
+<p>后续（2021.10.20）：看起来太丑了，果然还是不能忍<br>根据网上的教程调整后，目前所有的行内公式都能正常显示了，但是所有的行间公式都被吃掉了！似乎情况变得更加不妙。。。网上也搜不到其他人有类似的情况，可恶。不太敢再乱动了，等我思考一下究竟是哪里出了问题。</p>
+<p>说起来VS Code本地预览一直都是正常的，这个渲染器就不能直接拿来集成到hexo吗！明明可以好好显示，hexo却这么难搞，是在撒娇吗！非常奇怪。</p>
 
       
     </div>
@@ -220,7 +341,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://bliu42.github.io/2021/10/18/QuantumComplexityGrowth/">
+    <link itemprop="mainEntityOfPage" href="https://bliu42.github.io/2021/10/18/%E8%AE%BA%E6%96%87%EF%BC%9AModels%20of%20Quantum%20Complexity%20Growth/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://raw.githubusercontent.com/bliu42/BlogImages/main/avatar.jpg">
@@ -234,7 +355,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/10/18/QuantumComplexityGrowth/" class="post-title-link" itemprop="url">论文：Models of Quantum Complexity Growth</a>
+            <a href="/2021/10/18/%E8%AE%BA%E6%96%87%EF%BC%9AModels%20of%20Quantum%20Complexity%20Growth/" class="post-title-link" itemprop="url">论文：Models of Quantum Complexity Growth</a>
         </h2>
 
         <div class="post-meta">
@@ -243,10 +364,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-10-18 09:52:49 / 修改时间：13:05:13" itemprop="dateCreated datePublished" datetime="2021-10-18T09:52:49+08:00">2021-10-18</time>
+              <time title="创建时间：2021-10-18 09:52:49" itemprop="dateCreated datePublished" datetime="2021-10-18T09:52:49+08:00">2021-10-18</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-10-20 10:46:28" itemprop="dateModified" datetime="2021-10-20T10:46:28+08:00">2021-10-20</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -273,7 +400,7 @@
 </blockquote>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/10/18/QuantumComplexityGrowth/#more" rel="contents">
+              <a class="btn" href="/2021/10/18/%E8%AE%BA%E6%96%87%EF%BC%9AModels%20of%20Quantum%20Complexity%20Growth/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -328,7 +455,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-15 14:02:48" itemprop="dateModified" datetime="2021-10-15T14:02:48+08:00">2021-10-15</time>
+                <time title="修改时间：2021-10-20 11:17:10" itemprop="dateModified" datetime="2021-10-20T11:17:10+08:00">2021-10-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -353,8 +480,6 @@
       
           <blockquote>
 <p>Aasen, D., Hell, M., Mishmash, R. V., Higginbotham, A., Danon, J., Leijnse, M., Jespersen, T. S., Folk, J. A., Marcus, C. M., Flensberg, K., &amp; Alicea, J. (2016). Milestones toward Majorana-based quantum computing. Physical Review X, 6(3), 1–28. <a target="_blank" rel="noopener" href="https://doi.org/10.1103/PhysRevX.6.031016">https://doi.org/10.1103/PhysRevX.6.031016</a></p>
-</blockquote>
-<blockquote>
 <p>Knapp, C., Beverland, M., Pikulin, D. I., &amp; Karzig, T. (2018). Modeling noise and error correction for Majorana-based quantum computing. Quantum, 2. <a target="_blank" rel="noopener" href="https://doi.org/10.22331/q-2018-09-03-88">https://doi.org/10.22331/q-2018-09-03-88</a></p>
 </blockquote>
           <!--noindex-->
@@ -508,7 +633,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>答案是只要水够深，多少都不会让轮船沉。</p>
+          <p>答案是只要水够深，多少都不会让轮船沉。<br>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/09/17/%E6%97%A2%E7%84%B6%E5%8A%A0%E8%82%A5%E7%9A%82%E6%B0%B4%E5%8F%AF%E4%BB%A5%E8%AE%A9%E9%93%9C%E7%89%87%E4%B8%8B%E6%B2%89%EF%BC%8C%E9%82%A3%E4%B9%88%E5%8A%A0%E5%A4%9A%E5%B0%91%E6%89%8D%E8%83%BD%E8%AE%A9%E8%BD%AE%E8%88%B9%E6%B2%89%E5%91%A2%EF%BC%9F/#more" rel="contents">
@@ -583,7 +708,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>来看图！</p>
+          <p>来看图！<br>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/09/17/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%9C%A8%E7%81%AB%E6%88%96%E8%80%85%E8%B5%B7%E9%A3%9E%E7%9A%84%E9%A3%9E%E6%9C%BA%E6%97%81%E8%BE%B9%E7%9A%84%E8%83%8C%E6%99%AF%E6%80%BB%E6%98%AF%E5%8A%A8%E8%8D%A1%E6%A8%A1%E7%B3%8A%E7%9A%84%E5%91%A2%EF%BC%9F/#more" rel="contents">
@@ -741,8 +866,6 @@
       
           <blockquote>
 <p>Yu, S., &amp; Liu, N. Le. (2005). Entanglement detection by local orthogonal observables. Physical Review Letters, 95(15), 1–4. <a target="_blank" rel="noopener" href="https://doi.org/10.1103/PhysRevLett.95.150504">https://doi.org/10.1103/PhysRevLett.95.150504</a></p>
-</blockquote>
-<blockquote>
 <p>Horodecki, R., Horodecki, P., Horodecki, M., &amp; Horodecki, K. (2009). Quantum entanglement. Reviews of Modern Physics, 81(2), 865–942. <a target="_blank" rel="noopener" href="https://doi.org/10.1103/RevModPhys.81.865">https://doi.org/10.1103/RevModPhys.81.865</a></p>
 </blockquote>
           <!--noindex-->
@@ -909,8 +1032,7 @@
 
       
           <blockquote>
-<p>是关于一篇以前读过的2020年的Nature Physics<a target="_blank" rel="noopener" href="http://dx.doi.org/10.1038/s41567-020-01109-8">论文</a>的复习。作者是Sergey Bravyi等人。</p>
-</blockquote>
+<p>是关于一篇以前读过的2020年的Nature Physics<a target="_blank" rel="noopener" href="http://dx.doi.org/10.1038/s41567-020-01109-8">论文</a>的复习。作者是Sergey Bravyi等人。<br>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/09/08/VQE%E7%9A%84%E7%BB%8F%E5%85%B8%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90/#more" rel="contents">
@@ -1051,7 +1173,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-09-14 10:03:12" itemprop="dateModified" datetime="2021-09-14T10:03:12+08:00">2021-09-14</time>
+                <time title="修改时间：2021-10-20 10:44:39" itemprop="dateModified" datetime="2021-10-20T10:44:39+08:00">2021-10-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1331,6 +1453,7 @@
   if (typeof MathJax === 'undefined') {
     window.MathJax = {
       loader: {
+          load: ['[tex]/mhchem'],
         source: {
           '[tex]/amsCd': '[tex]/amscd',
           '[tex]/AMScd': '[tex]/amscd'
@@ -1338,6 +1461,7 @@
       },
       tex: {
         inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
         tags: 'ams'
       },
       options: {
