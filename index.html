@@ -243,7 +243,7 @@ mjx-container[display="true"] + br {
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">21</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">22</span></a>
 
   </li>
   </ul>
@@ -273,6 +273,89 @@ mjx-container[display="true"] + br {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://bliu42.github.io/2022/03/07/%E6%9C%89%E9%99%90%E6%B8%A92-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/bliu42/BlogImages/main/avatar.jpg">
+      <meta itemprop="name" content="Tina Liu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cameologist">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/03/07/%E6%9C%89%E9%99%90%E6%B8%A92-3/" class="post-title-link" itemprop="url">有限温度量子场论-第二章 虚时路径积分（2.3 中性标量场）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-03-07 15:17:01" itemprop="dateCreated datePublished" datetime="2022-03-07T15:17:01+08:00">2022-03-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-03-12 16:50:24" itemprop="dateModified" datetime="2022-03-12T16:50:24+08:00">2022-03-12</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课程笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>从2.3节，正式进入场的计算。<br>利用虚时路径积分可以计算简单的无相互作用中性标量场。中性意味着没有守恒荷，哈密顿量没有<mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.489ex" xmlns="http://www.w3.org/2000/svg" width="3.373ex" height="2.034ex" role="img" focusable="false" viewBox="0 -683 1491 899"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D441" d="M234 637Q231 637 226 637Q201 637 196 638T191 649Q191 676 202 682Q204 683 299 683Q376 683 387 683T401 677Q612 181 616 168L670 381Q723 592 723 606Q723 633 659 637Q635 637 635 648Q635 650 637 660Q641 676 643 679T653 683Q656 683 684 682T767 680Q817 680 843 681T873 682Q888 682 888 672Q888 650 880 642Q878 637 858 637Q787 633 769 597L620 7Q618 0 599 0Q585 0 582 2Q579 5 453 305L326 604L261 344Q196 88 196 79Q201 46 268 46H278Q284 41 284 38T282 19Q278 6 272 0H259Q228 2 151 2Q123 2 100 2T63 2T46 1Q31 1 31 10Q31 14 34 26T39 40Q41 46 62 46Q130 49 150 85Q154 91 221 362L289 634Q287 635 234 637Z"></path></g><g data-mml-node="mi" transform="translate(888,0)"><path data-c="1D707" d="M58 -216Q44 -216 34 -208T23 -186Q23 -176 96 116T173 414Q186 442 219 442Q231 441 239 435T249 423T251 413Q251 401 220 279T187 142Q185 131 185 107V99Q185 26 252 26Q261 26 270 27T287 31T302 38T315 45T327 55T338 65T348 77T356 88T365 100L372 110L408 253Q444 395 448 404Q461 431 491 431Q504 431 512 424T523 412T525 402L449 84Q448 79 448 68Q448 43 455 35T476 26Q485 27 496 35Q517 55 537 131Q543 151 547 152Q549 153 557 153H561Q580 153 580 144Q580 138 575 117T555 63T523 13Q510 0 491 -8Q483 -10 467 -10Q446 -10 429 -4T402 11T385 29T376 44T374 51L368 45Q362 39 350 30T324 12T288 -4T246 -11Q199 -11 153 12L129 -85Q108 -167 104 -180T92 -202Q76 -216 58 -216Z"></path></g></g></g></svg></mjx-container>项。标量意味着每个时空点的场的值用一个变量表示。<br>虽然对于无相互作用的简单情况，可以用二次量子化简单计算。但是，虚时路径积分在有相互作用情况下很有用，因此本章意在用简单情况展示这一有用方法。</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/03/07/%E6%9C%89%E9%99%90%E6%B8%A92-3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://bliu42.github.io/2022/02/28/%E6%9C%89%E9%99%90%E6%B8%A92/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -287,7 +370,7 @@ mjx-container[display="true"] + br {
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/02/28/%E6%9C%89%E9%99%90%E6%B8%A92/" class="post-title-link" itemprop="url">有限温度量子场论-第二章 虚时路径积分（一）</a>
+            <a href="/2022/02/28/%E6%9C%89%E9%99%90%E6%B8%A92/" class="post-title-link" itemprop="url">有限温度量子场论-第二章 虚时路径积分（2.1 核心公式 2.2简谐振子模型）</a>
         </h2>
 
         <div class="post-meta">
@@ -304,7 +387,7 @@ mjx-container[display="true"] + br {
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-07 15:15:24" itemprop="dateModified" datetime="2022-03-07T15:15:24+08:00">2022-03-07</time>
+                <time title="修改时间：2022-03-12 09:39:31" itemprop="dateModified" datetime="2022-03-12T09:39:31+08:00">2022-03-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1131,81 +1214,6 @@ mjx-container[display="true"] + br {
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://bliu42.github.io/2021/09/17/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%9C%A8%E7%81%AB%E6%88%96%E8%80%85%E8%B5%B7%E9%A3%9E%E7%9A%84%E9%A3%9E%E6%9C%BA%E6%97%81%E8%BE%B9%E7%9A%84%E8%83%8C%E6%99%AF%E6%80%BB%E6%98%AF%E5%8A%A8%E8%8D%A1%E6%A8%A1%E7%B3%8A%E7%9A%84%E5%91%A2%EF%BC%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://raw.githubusercontent.com/bliu42/BlogImages/main/avatar.jpg">
-      <meta itemprop="name" content="Tina Liu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cameologist">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/09/17/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%9C%A8%E7%81%AB%E6%88%96%E8%80%85%E8%B5%B7%E9%A3%9E%E7%9A%84%E9%A3%9E%E6%9C%BA%E6%97%81%E8%BE%B9%E7%9A%84%E8%83%8C%E6%99%AF%E6%80%BB%E6%98%AF%E5%8A%A8%E8%8D%A1%E6%A8%A1%E7%B3%8A%E7%9A%84%E5%91%A2%EF%BC%9F/" class="post-title-link" itemprop="url">为什么在火或者起飞的飞机旁边的背景总是动荡模糊的呢？</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2021-09-17 19:44:52 / 修改时间：20:01:27" itemprop="dateCreated datePublished" datetime="2021-09-17T19:44:52+08:00">2021-09-17</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%9C%AC%E4%BA%BA%E5%9C%A8%E7%89%A9%E7%90%86%E6%89%80%E7%AD%94%E8%BF%87%E7%9A%84%E9%A2%98%E7%9B%AE%E5%AD%98%E6%A1%A3/" itemprop="url" rel="index"><span itemprop="name">本人在物理所答过的题目存档</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>来看图！<br>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/17/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%9C%A8%E7%81%AB%E6%88%96%E8%80%85%E8%B5%B7%E9%A3%9E%E7%9A%84%E9%A3%9E%E6%9C%BA%E6%97%81%E8%BE%B9%E7%9A%84%E8%83%8C%E6%99%AF%E6%80%BB%E6%98%AF%E5%8A%A8%E8%8D%A1%E6%A8%A1%E7%B3%8A%E7%9A%84%E5%91%A2%EF%BC%9F/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1277,7 +1285,7 @@ mjx-container[display="true"] + br {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
