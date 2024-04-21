@@ -233,7 +233,7 @@ mjx-container[display="true"] + br {
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">26</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">27</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -243,7 +243,7 @@ mjx-container[display="true"] + br {
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">44</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">46</span></a>
 
   </li>
   </ul>
@@ -269,6 +269,177 @@ mjx-container[display="true"] + br {
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://bliu42.github.io/2024/04/21/%E5%AE%B9%E6%96%A5%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/bliu42/BlogImages/main/avatar.jpg">
+      <meta itemprop="name" content="Tina Liu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cameologist">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/04/21/%E5%AE%B9%E6%96%A5%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">算法学习：容斥原理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-04-21 09:58:29 / 修改时间：13:05:56" itemprop="dateCreated datePublished" datetime="2024-04-21T09:58:29+08:00">2024-04-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/coding/" itemprop="url" rel="index"><span itemprop="name">coding</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>容斥原理是一种组合数学方法，可以求集合并的大小，计算复合事件的概率。</p>
+</blockquote>
+<h3 id="容斥原理"><a href="#容斥原理" class="headerlink" title="容斥原理"></a>容斥原理</h3><p>对 n 个集合求并集中的元素，可以先加起来，再逐项减去交集中的元素。</p>
+<p>$\left|\bigcup_{i=1}^n A_i\right|=\sum_{i=1}^n\left|A_i\right|-\sum_{i, j: 1 \leq i&lt;j \leq n}\left|A_i \cap A_j\right|+\sum_{i, j, k:} \sum_{1 \leq i&lt;j&lt;k \leq n}\left|A_i \cap A_j \cap A_k\right|-\ldots+(-1)^{n-1}\left|A_1 \cap \ldots \cap A_n\right|$</p>
+<p>写成求和的形式：</p>
+<p>$\left|\bigcup_{i=1}^n A_i\right|=\sum_{C \subseteq B}(-1)^{\operatorname{size}(C)-1}\left|\bigcap_{e \in C} e\right|$</p>
+<h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3><p>n 较小时，可以通过韦恩图来理解。</p>
+<p>一般地，我们可以证明对于任意一个元素，只在等式右边加了1次：</p>
+<p>假设这一元素在 k 个集合中出现，则</p>
+<p>C = 1 项：加了 k 次。</p>
+<p>C = 2 项：$- C_k^2$.</p>
+<p>……</p>
+<p>C = k: $(-1)^{k-1}C_k^k$.</p>
+<p>对这些项求和，得到一个多项式：</p>
+<p>$T=C_k^1-C_k^2+C_k^3-\ldots+(-1)^{i-1} \cdot C_k^i+\ldots+(-1)^{k-1} \cdot C_k^k$</p>
+<p>注意到：</p>
+<p>$(1-x)^k = C_k^0 -C_k^1\cdot x + C_k^2 \cdot x^2 +\dots + (-1)^k\cdot C_k^k \cdot x^k.$</p>
+<p>$T= -(1-1)^k + 1 = 0, T = 1.$</p>
+<h3 id="例子1-方程整数解问题。"><a href="#例子1-方程整数解问题。" class="headerlink" title="例子1: 方程整数解问题。"></a>例子1: 方程整数解问题。</h3><p>已知 $0 \leq x_i \leq 8$, 方程 $x_1 + x_2 + \dots + x_6 = 20$ 的整数解有多少？</p>
+<p>解：</p>
+<p>假设 x 均为自然数，则一共有 $C_{25}^5$ 种解。（20个1和5个分隔板共25个位置，取5个为分隔板。）</p>
+<p>考虑某一个 $x_k \geq 9$ 的情况。25个位置中，固定了9个位置，再安排5个分隔板，所以解的数目 $|A_k| = C_{16}^5$.</p>
+<p>计算 $x_k \geq 9$ 和 $x_p \geq 9$ 的交集：</p>
+<script type="math/tex; mode=display">
+|A_k \cap A_q| = C_7^5.</script><p>因为不可能有3个及以上的x超过8，所以我们最多只需要考虑两两相交的情况。利用容斥原理：</p>
+<script type="math/tex; mode=display">
+C_{25}^5 - C_6^1 \cdot C_{16}^5 + C_6^2 \cdot C_7^5.</script>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://bliu42.github.io/2024/04/03/%E9%87%8F%E5%AD%90%E8%B5%84%E6%BA%90%E7%90%86%E8%AE%BA%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%87%E7%8C%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/bliu42/BlogImages/main/avatar.jpg">
+      <meta itemprop="name" content="Tina Liu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cameologist">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/04/03/%E9%87%8F%E5%AD%90%E8%B5%84%E6%BA%90%E7%90%86%E8%AE%BA%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%87%E7%8C%AE/" class="post-title-link" itemprop="url">论文摘要：量子资源理论</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-04-03 14:37:19 / 修改时间：14:38:49" itemprop="dateCreated datePublished" datetime="2024-04-03T14:37:19+08:00">2024-04-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A7%91%E7%A0%94%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">科研笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <blockquote>
+<p>花了一点时间整理了一些论文。内容非常简要，记录以供参考。</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/04/03/%E9%87%8F%E5%AD%90%E8%B5%84%E6%BA%90%E7%90%86%E8%AE%BA%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%87%E7%8C%AE/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1058,174 +1229,6 @@ mjx-container[display="true"] + br {
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://bliu42.github.io/2023/03/07/JUlia%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://raw.githubusercontent.com/bliu42/BlogImages/main/avatar.jpg">
-      <meta itemprop="name" content="Tina Liu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cameologist">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/03/07/JUlia%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Julia学习笔记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-03-07 19:26:29" itemprop="dateCreated datePublished" datetime="2023-03-07T19:26:29+08:00">2023-03-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-04-25 09:36:48" itemprop="dateModified" datetime="2023-04-25T09:36:48+08:00">2023-04-25</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/coding/" itemprop="url" rel="index"><span itemprop="name">coding</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>最近稍微学习了一种新的编程语言，感觉做科学计算很好用，似乎比python好用。准备写个小程序算点东西。<br>具体来说，在不太应该操心变量类型的地方可以完全不管，有许多同名的method会自动匹配。<br>而在想要限制变量类型的时候又非常方便。（当然对于性能的提升还有待学习）<br>另外函数的用法也很灵活。（有待学习）<br>学的时候不禁感慨自己从来没学会过python和C++。<br>这里会记录我学习的时候觉得重要的东西。</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/03/07/JUlia%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://bliu42.github.io/2022/12/30/Magic-measures/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://raw.githubusercontent.com/bliu42/BlogImages/main/avatar.jpg">
-      <meta itemprop="name" content="Tina Liu">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Cameologist">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/12/30/Magic-measures/" class="post-title-link" itemprop="url">Magic Measures in Many-body Systems</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-12-30 12:50:54" itemprop="dateCreated datePublished" datetime="2022-12-30T12:50:54+08:00">2022-12-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-03-16 15:00:39" itemprop="dateModified" datetime="2023-03-16T15:00:39+08:00">2023-03-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%A7%91%E7%A0%94%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">科研笔记</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>Besides entanglement, the ‘magic’ of a quantum state is a measure of how useful it is for quantum computation.</p>
-<p>Magic means non-stabilizerness, while QC in stabilizer space is proved to have no advantage over classical computation.</p>
-<p>Many-body magic measures the resource of states in certain phase.</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/12/30/Magic-measures/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1297,7 +1300,7 @@ mjx-container[display="true"] + br {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-count">46</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1310,7 +1313,7 @@ mjx-container[display="true"] + br {
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">26</span>
+        <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
