@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/32x32_favicon.icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/32x32_favicon.icon">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/16x16_favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"bliu42.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":250,"display":"always","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="关于NASA开发出的在500摄氏度以上的极端环境能够应用的半导体器件的调研。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4H-SiC长期高温IC器件">
+<meta property="og:url" content="https://bliu42.github.io/2024/07/23/4H-SiC%E5%99%A8%E4%BB%B6/index.html">
+<meta property="og:site_name" content="Cameologist">
+<meta property="og:description" content="关于NASA开发出的在500摄氏度以上的极端环境能够应用的半导体器件的调研。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//gen8.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//gen9.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//gen10.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//gen11:10.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//crack_photo.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//crack1.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//32pin_package.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//8pin_package.png">
+<meta property="article:published_time" content="2024-07-23T09:57:12.000Z">
+<meta property="article:modified_time" content="2024-07-24T06:37:00.000Z">
+<meta property="article:author" content="Tina Liu">
+<meta property="article:tag" content="Semiconductor">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//gen8.png">
+
+<link rel="canonical" href="https://bliu42.github.io/2024/07/23/4H-SiC%E5%99%A8%E4%BB%B6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>4H-SiC长期高温IC器件 | Cameologist</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cameologist</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Tina的小站，随机胡诌&科研笔记。调试中...</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">30</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">50</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://bliu42.github.io/2024/07/23/4H-SiC%E5%99%A8%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/bliu42/BlogImages/main/avatar.jpg">
+      <meta itemprop="name" content="Tina Liu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cameologist">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          4H-SiC长期高温IC器件
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-07-23 17:57:12" itemprop="dateCreated datePublished" datetime="2024-07-23T17:57:12+08:00">2024-07-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-07-24 14:37:00" itemprop="dateModified" datetime="2024-07-24T14:37:00+08:00">2024-07-24</time>
+              </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>关于NASA开发出的在500摄氏度以上的极端环境能够应用的半导体器件的调研。</p>
+</blockquote>
+<span id="more"></span>
+<h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><h4 id="Why-4H-SiC"><a href="#Why-4H-SiC" class="headerlink" title="Why 4H-SiC?"></a>Why 4H-SiC?</h4><p>宽禁带半导体能够用于制造适合于极端条件的器件。在所有的宽禁带半导体中，目前只有SiC能够制造出CMOS的集成电路。<br>SiC是一种很好的宽禁带半导体材料。在室温下，其本征载流子浓度相比于Si是极低的。<br>SiC具有多种晶体结构，称为多型。3C-SiC是立方晶格（Cubic）结构，在高温下不稳定，因此不适合于制造器件。6H-SiC和4H-SiC都属于六方晶体（hexagonal）结构，其中数字4和6表示它们的晶胞中的层数，它们具有不同的电子能带结构。</p>
+<ul>
+<li><strong>4H-SiC</strong>：4H-SiC是SiC的一种优越多型，具有宽带隙、优异的热稳定性以及卓越的电学和机械特性。它适用于高功率和高频率应用，尤其在高温和高电压下表现出色。</li>
+<li><strong>6H-SiC</strong>：6H-SiC的缺陷密度较低，载流子复合速率也较低，因此更适用于高质量的基底应用。虽然它的电子性能较4H-SiC略差，但在特定用途下仍具有价值。<br>在1994年制备出4H-SiC的wafer之后，对于4H-多型的研究相比于6H-就远远占据上风。<br>这是因为电子迁移率在4H中要远远快于6H。<br>SiC的IC目前在1微米尺度，而目前硅集成电路的沟道长度已经可以达到8nm，结2nm。</li>
+</ul>
+<h4 id="Why-4H-SiC-JFET-IC"><a href="#Why-4H-SiC-JFET-IC" class="headerlink" title="Why 4H-SiC JFET IC?"></a>Why 4H-SiC JFET IC?</h4><p>商用的体硅和绝缘体上硅 (SOI) 金属氧化物半导体场效应晶体管 (MOSFET) 技术已经满足了高达 250 °C 的重要低功耗逻辑和信号处理要求。将 IC 工作温度范围扩展到远高于 300 °C 将会有一系列更广泛的用途。例如，用于更深的地热钻井的遥测系统、先进的喷气发动机仪表和控制以及金星地表探测器的数据收集（金星地表温度$\sim 460 C\degree$）。</p>
+<p>尽管对于宽禁带半导体 SiC 的 IC 器件，在300℃以上的高温运行已经不是很困难的事情，但是以上应用要求集成电路能够在500℃以上的高温长时间稳定运行（1000h以上）。在现有研究中出现过的长期稳定高温集成电路器件仅仅只有SiC JFET这一种结构。<br>JFET结构在高温下稳定的优势：</p>
+<ul>
+<li>是多子导电器件；</li>
+<li>epilayer使用同质pn结，漏电流更小；</li>
+<li>对p型SiC上的门接触的敏感性最小；</li>
+<li>欧姆接触位于n型注入区域。</li>
+</ul>
+<p>相应地对于BJT型器件，在高温下稳定运行的劣势在于，是少子导电器件，且既需要n型欧姆接触又需要p型欧姆接触。</p>
+<p>对高温长期稳定的SiC JFET器件持续开展研究的团队是以 David J. Spry 和 Philip G. Neudeck 为代表的NASA Glenn SiC IC 团队。目前仅有该团队能够造出500℃以上稳定运行超过1000h的SiC器件。该团队制作的IC可以实现环震(ring oscillators), 差分放大器(differential amplifiers), 触发器(flip-flops), 内存(memory)等功能。<br>从2016年到2023年，该团队制作的基于JFET-R的集成电路器件经过第8代到第13代的迭代，已经可以实现很高的集成度（在5x5mm 的晶粒上集成约3000晶体管）并在模拟金星大气环境下进行了60天的测试。</p>
+<h3 id="NASA-JFET-R器件结构与工艺"><a href="#NASA-JFET-R器件结构与工艺" class="headerlink" title="NASA JFET-R器件结构与工艺"></a>NASA JFET-R器件结构与工艺</h3><h4 id="器件结构"><a href="#器件结构" class="headerlink" title="器件结构"></a>器件结构</h4><p>NASA的方案具有双层互联结构（interconnect），能够实现更加复杂的IC。<br>第八代：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//gen8.png" alt=""></p>
+<p>第九代：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//gen9.png" alt=""></p>
+<p>第十代：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//gen10.png" alt=""></p>
+<p>第11代：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//gen11:10.png" alt=""></p>
+<p>第12代和第13代：较为成熟的工艺，设计细节可以在官网<sup><a href="#fn_3" id="reffn_3">3</a></sup>给出的资料里找到。需要注意的是在制备wafer的时候，JFET器件模型不仅会随着温度的变化而变化，还会随着SiC晶圆上的位置而变化。因此，电路设计应将这两个重要的器件性能依赖性都考虑在内。</p>
+<h4 id="SiC接触电极材料选择"><a href="#SiC接触电极材料选择" class="headerlink" title="SiC接触电极材料选择"></a>SiC接触电极材料选择</h4><p>在 David J. Spry 等人2016年的工作<sup><a href="#fn_1" id="reffn_1">1</a></sup>中，第九代 JFET 集成电路的 SiC 接触点采用了 50nm 的 Hf 溅射层，而非第8代的 50nm Ti。而在 Philip G. Neudeck 和 Spry 等人2017年的工作<sup><a href="#fn_2" id="reffn_2">2</a></sup>中，他们制备的用于更高温度（&gt;900℃）极限测试的JFET集成电路仍然使用了Ti电极，作者声称尝试过Hf的方案但是以失败告终。可见Hf的加工是有一定难度的。</p>
+<p>SiC 器件常用的接触电极材料：Hf（铪）、Ti（钛）和Ni（镍）。<br>Hf（铪）电极作为高温器件的电极材料具有许多优点：</p>
+<p><strong>高熔点</strong>：Hf的熔点非常高，约为2233°C。这使得Hf电极在高温环境下具有良好的稳定性和耐久性。<br><strong>化学稳定性</strong>：Hf对氧化物和其他环境因素的抵抗能力较强，不易发生腐蚀或氧化。这对于长期使用的器件至关重要。<br><strong>低功函数</strong>：Hf的功函数较低，有助于减少电子势垒，提高电子注入效率。这对于电子场发射器件（如Hf电极的金属氧化物半导体场效应晶体管）非常重要。<br><strong>良好的界面特性</strong>：Hf电极与4H-SiC等半导体材料之间的界面特性较好，有助于减小接触电阻。</p>
+<p>但也存在一些缺点：</p>
+<p><strong>昂贵</strong>：Hf是一种稀有金属，因此成本较高。在大规模生产中，这可能会影响器件的经济性。<br><strong>难加工性</strong>：Hf的硬度较高，加工和制备Hf电极相对复杂。这可能导致制造过程的挑战。<br><strong>与其他材料的反应性</strong>：尽管Hf对氧化物的抵抗能力较强，但在某些条件下，它仍可能与其他材料发生反应，导致界面问题或电子性能下降。<br><strong>热膨胀系数不匹配</strong>：Hf和4H-SiC等半导体材料的热膨胀系数不完全匹配，可能在温度变化时引起应力和热应力。</p>
+<h4 id="主要故障原因：电介质裂纹"><a href="#主要故障原因：电介质裂纹" class="headerlink" title="主要故障原因：电介质裂纹"></a>主要故障原因：电介质裂纹</h4><p>发现主要故障原因是电介质上的裂纹导致 TaSi2 的互联结构在裂纹下方发生氧化造成的开路故障。下图为裂纹的横截面显微照片：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//crack_photo.png" alt=""></p>
+<p>在2020年的一篇文章<sup><a href="#fn_4" id="reffn_4">4</a></sup>中，团队探讨了Si3N4层数以及Metal 2的制备方法对电介质裂缝的影响，试图提高良率和高温下使用时间。下图为3种不同器件的测试结果。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//crack1.png" alt=""></p>
+<h4 id="封装材料选择"><a href="#封装材料选择" class="headerlink" title="封装材料选择"></a>封装材料选择</h4><p>NASA团队中Liangyu Chen主要研制封装材料。2021年该团队给出的一个高温环境的封装方案<sup><a href="#fn_5" id="reffn_5">5</a></sup>，采用96%氧化铝(Al2O3)陶瓷基板和金(Au)厚膜金属化,可在高温下提供良好的电绝缘性和耐久性。</p>
+<p>利用上述材料，NASA分别开发了2017年的32引脚方案（图1），和2021年的8引脚方案（图二）.但大部分的器件都是利用8引脚的方案测试的，包括1万小时以上的500℃空气环境测试，和空间站上有阳光热循环环境的18个月测试。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//32pin_package.png" alt="png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//8pin_package.png" alt="png"></p>
+<blockquote id="fn_1">
+<sup>1</sup>. <a target="_blank" rel="noopener" href="https://ntrs.nasa.gov/api/citations/20160014879/downloads/20160014879.pdf">https://ntrs.nasa.gov/api/citations/20160014879/downloads/20160014879.pdf</a>.<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_2">
+<sup>2</sup>. P. G. Neudeck, D. J. Spry, et. al., “Demonstration of 4H-SiC Digital Integrated Circuits Above 800 °C,” in IEEE Electron Device Letters, vol. 38, no. 8, pp. 1082-1085, Aug. 2017, doi: 10.1109/LED.2017.2719280. <a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/7956136">https://ieeexplore.ieee.org/document/7956136</a>.<a href="#reffn_2" title="Jump back to footnote [2] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_3">
+<sup>3</sup>. <a target="_blank" rel="noopener" href="https://www1.grc.nasa.gov/research-and-engineering/silicon-carbide-electronics-and-sensors/jfet-ic-tech-guide/#ic-generation-13-design">https://www1.grc.nasa.gov/research-and-engineering/silicon-carbide-electronics-and-sensors/jfet-ic-tech-guide/#ic-generation-13-design</a>.<a href="#reffn_3" title="Jump back to footnote [3] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_4">
+<sup>4</sup>. <a target="_blank" rel="noopener" href="https://doi.org/10.4028/www.scientific.net/MSF.1004.1148">https://doi.org/10.4028/www.scientific.net/MSF.1004.1148</a>.<a href="#reffn_4" title="Jump back to footnote [4] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_5">
+<sup>5</sup>. Liangyu Chen, Philip G. Neudeck, David J. Spry, Glenn M. Beheim, Gary W. Hunter; A 96% Alumina based Packaging System for 500°C Test of SiC Integrated Circuits. Additional Conferences (Device Packaging, HiTEC, HiTEN, and CICMT) 1 April 2021; 2021 (HiTEC): 000069–000075. doi: <a target="_blank" rel="noopener" href="https://doi.org/10.4071/2380-4491.2021.HiTEC.000069">https://doi.org/10.4071/2380-4491.2021.HiTEC.000069</a><a href="#reffn_5" title="Jump back to footnote [5] in the text."> &#8617;</a>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Semiconductor/" rel="tag"># Semiconductor</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/05/19/Contextual%20and%20Entanglement/" rel="prev" title="论文：Contextuality as a Precondition for Quantum Entanglement">
+      <i class="fa fa-chevron-left"></i> 论文：Contextuality as a Precondition for Quantum Entanglement
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/08/28/SiC-CMOS/" rel="next" title="SiC CMOS 器件研发笔记">
+      SiC CMOS 器件研发笔记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Why-4H-SiC"><span class="nav-text">Why 4H-SiC?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Why-4H-SiC-JFET-IC"><span class="nav-text">Why 4H-SiC JFET IC?</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NASA-JFET-R%E5%99%A8%E4%BB%B6%E7%BB%93%E6%9E%84%E4%B8%8E%E5%B7%A5%E8%89%BA"><span class="nav-text">NASA JFET-R器件结构与工艺</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%99%A8%E4%BB%B6%E7%BB%93%E6%9E%84"><span class="nav-text">器件结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SiC%E6%8E%A5%E8%A7%A6%E7%94%B5%E6%9E%81%E6%9D%90%E6%96%99%E9%80%89%E6%8B%A9"><span class="nav-text">SiC接触电极材料选择</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E6%95%85%E9%9A%9C%E5%8E%9F%E5%9B%A0%EF%BC%9A%E7%94%B5%E4%BB%8B%E8%B4%A8%E8%A3%82%E7%BA%B9"><span class="nav-text">主要故障原因：电介质裂纹</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%81%E8%A3%85%E6%9D%90%E6%96%99%E9%80%89%E6%8B%A9"><span class="nav-text">封装材料选择</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Tina Liu"
+      src="https://raw.githubusercontent.com/bliu42/BlogImages/main/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Tina Liu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="sidebar-button motion-element">
+    <a onclick="Chatra('openChat', true);"><i class="fa fa-comment"></i>
+    发消息给Tina！
+  </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/bliu42" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;bliu42" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/phoenixliu42@gmail.com" title="E-Mail → phoenixliu42@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://bgm.tv/user/319336" title="Bangumi → https:&#x2F;&#x2F;bgm.tv&#x2F;user&#x2F;319336" rel="noopener" target="_blank"><i class="fa fa-tv fa-fw"></i>Bangumi</a>
+      </span>
+  </div>
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=865857567&auto=1&height=66"></iframe>
+
+
+
+      </div>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-guitar"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tina Liu</span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i>
+<span id="busuanzi_container_site_uv">
+  本站总访客数:<span id="busuanzi_value_site_uv"></span>&nbsp;&nbsp;| 
+</span>
+<span id="busuanzi_container_site_pv">
+    &nbsp;本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+</div>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+  <script>
+    (function(d, w, c) {
+      w.ChatraID = 'WiN24LdQtE4tduLHp';
+      var s = d.createElement('script');
+      w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments);
+      };
+      s.async = false;
+      s.src = 'https://call.chatra.io/chatra.js';
+      if (d.head) d.head.appendChild(s);
+    })(document, window, 'Chatra');
+  </script>
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+</body>
+</html>

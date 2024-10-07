@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/32x32_favicon.icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/32x32_favicon.icon">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/16x16_favicon.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"bliu42.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":250,"display":"always","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="本笔记首先简述了由半导体物理推导出的MOS器件的电学特性，然后介绍了SiC 器件的工艺，以及一些例子中SiC CMOS的参数。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SiC CMOS 器件研发笔记">
+<meta property="og:url" content="https://bliu42.github.io/2024/08/28/SiC-CMOS/index.html">
+<meta property="og:site_name" content="Cameologist">
+<meta property="og:description" content="本笔记首先简述了由半导体物理推导出的MOS器件的电学特性，然后介绍了SiC 器件的工艺，以及一些例子中SiC CMOS的参数。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//CV_curve.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//capacity_circuit.jpeg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//CMOS_paper_2014.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//CMOS_device_paper_2014.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//SiC-CMOS.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//SiC-CMOS-sub.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//SiC-CMOS-Process.png">
+<meta property="article:published_time" content="2024-08-28T08:54:41.000Z">
+<meta property="article:modified_time" content="2024-08-28T09:04:54.000Z">
+<meta property="article:author" content="Tina Liu">
+<meta property="article:tag" content="Semiconductor">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//CV_curve.png">
+
+<link rel="canonical" href="https://bliu42.github.io/2024/08/28/SiC-CMOS/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>SiC CMOS 器件研发笔记 | Cameologist</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cameologist</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Tina的小站，随机胡诌&科研笔记。调试中...</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">30</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">50</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://bliu42.github.io/2024/08/28/SiC-CMOS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontent.com/bliu42/BlogImages/main/avatar.jpg">
+      <meta itemprop="name" content="Tina Liu">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cameologist">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SiC CMOS 器件研发笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-08-28 16:54:41 / 修改时间：17:04:54" itemprop="dateCreated datePublished" datetime="2024-08-28T16:54:41+08:00">2024-08-28</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <blockquote>
+<p>本笔记首先简述了由半导体物理推导出的MOS器件的电学特性，然后介绍了SiC 器件的工艺，以及一些例子中SiC CMOS的参数。</p>
+</blockquote>
+<span id="more"></span>
+<h1 id="MOS器件特性"><a href="#MOS器件特性" class="headerlink" title="MOS器件特性"></a>MOS器件特性</h1><h3 id="MOS器件I-V特性"><a href="#MOS器件I-V特性" class="headerlink" title="MOS器件I/V特性"></a>MOS器件I/V特性</h3><p><strong>阈值电压</strong>：定义为反型层浓度等于掺杂浓度，实际上在IV测量中很难直接测量。</p>
+<script type="math/tex; mode=display">
+V_{th}=\frac{|Q'_{SD}(\max)|}{C_{ox}}+V_{FB}+2\phi_{fp}.</script><p>其中，$|Q’<em>{SD}(\max)|=eN_a x</em>{dT}$ , 为反型层/空间电荷区的总电荷。</p>
+<p>$x<em>{dT}=\left(\frac{4\epsilon_s\phi</em>{fp}}{eN_a}\right)^{1/2}$ 为空间电荷区最大宽度。</p>
+<p>电势 $\phi_{fp}=V_t \ln(\frac{N_a}{n_i})$ 是掺杂带来的费米能级变化。$V_t=KT/e$是热电压。</p>
+<p><strong>三极管区</strong>：$V<em>G&gt;V</em>{th}$ , 存在反型层，且反型层没有被夹断。沟道电压从0V变化到$V_{GS}$.</p>
+<p>此时的$I<em>D-V</em>{DS}/V_{GS}$关系为：</p>
+<script type="math/tex; mode=display">
+I_D = \mu_nC_{ox}\frac{W}{L}[(V_{GS}-V_{th})V_{DS}-\frac{1}{2}V_{DS}^2].</script><p>可以看出$I<em>D$ 与 $V</em>{GS}$ 呈现出一次关系，与 $V<em>{DS}$ 呈现出二次关系（在 $V</em>{DS}$ 很小的时候可忽略二次项）。电流的极大值出现在 $V<em>{DS}=V</em>{GS}-V_{th}$.</p>
+<p><strong>三极管区峰值电流</strong>：$I<em>{D,\max}$，与栅极电压 $V</em>{GS}$ 成二次关系：</p>
+<script type="math/tex; mode=display">
+I_{D,\max}=\frac{1}{2}\mu_nC_{ox}\frac{W}{L}(V_{GS}-V_{th})^2.</script><p><strong>导通电阻</strong>：$R<em>{on}$，当$V</em>{DS} &lt;&lt; 2(V<em>{GS}-V</em>{th})$ 很小的时候，$I<em>D$ 与 $V</em>{DS}$ 近似成线性关系，比值即为导通电阻。</p>
+<script type="math/tex; mode=display">
+R_{on}=\frac{1}{\mu_n C_{ox}\frac{W}{L}(V_{GS}-V_{th})}.</script><p><strong>饱和区</strong>：当MOS工作在 $V<em>{DS}&gt;V</em>{GS}-V<em>{th}$ 区域的时候，电流并不会按照抛物线减少，而是进入饱和区。原因就在于反型区的电荷密度是正值，栅压增大，沟道的反型层会被夹断，Q=0 的点将不断向源极移动。此时的有效沟道长度记为 $L’$ ，在此处电压等于 $V</em>{GS}-V_{th}$. </p>
+<p>此时的$I<em>D-V</em>{DS}/V_{GS}$关系为：</p>
+<script type="math/tex; mode=display">
+I_{D}=\frac{1}{2}\mu_nC_{ox}\frac{W}{L'}(V_{GS}-V_{th})^2.</script><p><strong>跨导</strong>：漏电流随栅极电压的变化率。饱和区的跨导为：</p>
+<script type="math/tex; mode=display">
+g_m = \frac{\partial I_D}{\partial V_{GS}}|_{V_{DS}}=\mu_n C_{ox} \frac{W}{L}(V_{GS}-V_{th}).</script><p>注意到饱和区跨导正好是导通电阻的倒数。</p>
+<p>三极管区的跨导：</p>
+<script type="math/tex; mode=display">
+g_m =\mu_n C_{ox} \frac{W}{L}V_{DS}.</script><p>三极管区的跨导会减小，因此利用MOS器件的放大效应时，一般使器件工作在饱和区。</p>
+<p><strong>电容电压关系（$C-V_{G}$特性）</strong>：MOS电容有三种状态：堆积、耗尽和反型。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//CV_curve.png" alt=""></p>
+<p>堆积区：对于pMOS，施加负的栅极电压时，界面会有空穴堆积。此时电容特性类似于平行板电容器。</p>
+<script type="math/tex; mode=display">
+C_{acc}=C_{ox}=\frac{\epsilon_{ox}}{t_{ox}}.</script><p>耗尽区：pMOS施加一个微小正偏压，产生空间电荷区。电压改变将导致界面电荷的累积，以及空间电荷区的扩展。因此，电容等于两个电容串联：</p>
+<script type="math/tex; mode=display">
+\frac{1}{C_{depl}}=\frac{1}{C_{ox}}+\frac{1}{C_{SD}}. \quad C_{SD}=\frac{\epsilon_{s}}{x_d}.</script><script type="math/tex; mode=display">
+C_{depl}=\frac{\epsilon_{ox}}{t_{ox}+(\frac{\epsilon_{ox}}{\epsilon_s})x_d}.</script><p>总电容随着空间电荷区宽度的增加而减小。在空间电荷区宽度达到最大的时候，耗尽区电容达到最小。</p>
+<p>反型区：在反型区，栅极电压进一步增大，界面的电荷密度增加，而空间电荷区的宽度不变。因此电容又回到和平行板电容器相同的情况。</p>
+<p><strong>平带电压 $V_{FB}$</strong>：在C-V曲线堆积区和耗尽区发生转换的地方，对应的栅极电压是平带电压。</p>
+<p><strong>固定氧化层电荷 $Q’_{ss}$</strong>：利用C-V曲线测出的平带电压和理想平带电压的差值就能确定等效固定氧化层电荷。</p>
+<script type="math/tex; mode=display">
+V_{FB}=\phi_{ms}-\frac{Q'_{ss}}{C_{ox}}.</script><p>等效固定氧化层可以通过在栅极和沟道接触处进行小薄层注入来调控，注入应确保在阈值电压下完全耗尽。用这种手段可以调节平带电压，从而调节阈值电压。</p>
+<p><strong>界面电荷效应</strong>：可以由实验测到的C-V曲线的平滑度确定。界面处存在一系列在禁带中的能带，当栅极电压依次扫描堆积、耗尽和反型区域的时候，界面电荷由正变负（对于p掺杂衬底）。因此C-V曲线会变平滑。</p>
+<h3 id="MOS的频率特性"><a href="#MOS的频率特性" class="headerlink" title="MOS的频率特性"></a><strong>MOS的频率特性</strong></h3><p>频率限制的基本因素：</p>
+<ul>
+<li>沟道输运时间。由于这个值一般较大，不影响MOS的典型频率响应。</li>
+<li>栅电容充电时间。分析等效电容电路，在电流增益为1时认为到达截止频率。<br><img src="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//capacity_circuit.jpeg" alt=""></li>
+</ul>
+<blockquote>
+<p>问题：器件的截止频率与功率有什么关系？在施敏的书p211 5.4.1 中，提到功率-频率的乘积主要受材料参数的限制。由于雪崩击穿场强和载流子饱和速度的限制，典型的功率输出随 $1/f^2$ 变化。<br>具体推导有待进一步调查！</p>
+</blockquote>
+<h3 id="MOS的击穿"><a href="#MOS的击穿" class="headerlink" title="MOS的击穿"></a>MOS的击穿</h3><ul>
+<li>齐纳击穿，隧穿，主要出现在高掺杂的器件中。</li>
+<li>雪崩击穿，主要击穿方式。</li>
+</ul>
+<h3 id="MOS器件的二阶效应"><a href="#MOS器件的二阶效应" class="headerlink" title="MOS器件的二阶效应"></a>MOS器件的二阶效应</h3><p><strong>体效应：</strong>衬底和源极之间的电势差改变反型层厚度，导致 $V_{th}$ 发生变化。</p>
+<p>考虑体效应之后，阈值电压变为：</p>
+<script type="math/tex; mode=display">
+V_{th}=V_{th,0}+\gamma(\sqrt{|2\Phi_F +V_{SB}|}-\sqrt{|2\Phi_F|}).</script><p>体效应系数 $\gamma=\sqrt{2q\epsilon<em>{sub}N</em>{sub}}/C_{ox}$ ，可以通过调整电容和衬底掺杂来调整。 </p>
+<p><strong>亚阈值导电性</strong>：当栅极电压小于阈值电压，存在弱反型层，源漏极之间存在电流。</p>
+<script type="math/tex; mode=display">
+I_{D,sub}\propto \exp[\frac{eV_{GS}}{kT}]\cdot[1-\exp(\frac{-eV_{DS}}{kT})].</script><p><strong>沟道长度调制</strong>：若反型层长度 $L’$ 和 $V<em>{DS}$ 无关，则在饱和区，一定栅压下漏极电流为常数。但实际中 $\Delta L /L = \lambda V</em>{DS}$，即反型层长度的变化量与漏极电压成正比。$\lambda$  为沟道调制系数。</p>
+<p>则饱和区电流出现与 $V_{DS}$ 的线性关系：</p>
+<script type="math/tex; mode=display">
+I_D \approx \frac{1}{2} \mu_n C_{ox} \frac{W}{L} (V_{GS}-V_{th})^2(1+\lambda V_{DS}).</script><p>饱和区跨导同样也会出现 $\lambda$ 的修正。</p>
+<p>当沟道长度较短的时候，反型层长度变化的线性近似失效，饱和区电流不再呈线性变化。</p>
+<p><strong>载流子速度饱和</strong>：当沟道变短源漏电压变大，沟道电场变强，载流子会达到饱和速度。</p>
+<blockquote>
+<p>对于Si，载流子饱和速度是 $10^7 cm/s$ ，在 $L=1\mu m,V_{DS}=5V$的情况下就会达到饱和速度。对于SiC，载流子饱和速度约是Si的二倍。</p>
+</blockquote>
+<p><strong>短沟道效应</strong>：源端和漏端的空间电荷区扩展到了沟道区域。</p>
+<h1 id="SiC-CMOS-工艺"><a href="#SiC-CMOS-工艺" class="headerlink" title="SiC CMOS 工艺"></a>SiC CMOS 工艺</h1><h2 id="书：《碳化硅技术基本原理——生长、表征、器件和应用》第六章-碳化硅器件工艺"><a href="#书：《碳化硅技术基本原理——生长、表征、器件和应用》第六章-碳化硅器件工艺" class="headerlink" title="书：《碳化硅技术基本原理——生长、表征、器件和应用》第六章 碳化硅器件工艺"></a>书：《碳化硅技术基本原理——生长、表征、器件和应用》第六章 碳化硅器件工艺</h2><h3 id="离子注入"><a href="#离子注入" class="headerlink" title="离子注入"></a><strong>离子注入</strong></h3><p>由于SiC中的扩散系数比Si低很多，所以一般采用离子注入而不是扩散制造选择掺杂区。</p>
+<p><strong>典型掺杂区域</strong>：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>区域</th>
+<th>深度/um</th>
+<th>掺杂浓度/cm^-3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>source/drain</td>
+<td>0.2-0.3</td>
+<td>e19-e10</td>
+</tr>
+<tr>
+<td>p+ contact</td>
+<td>0.2-0.3</td>
+<td>e19-e20</td>
+</tr>
+<tr>
+<td>p well</td>
+<td>0.4-0.7</td>
+<td>e17-e18</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>箱式注入</strong>：采用多次不同剂量和不同能量注入，形成一定深度的近似均匀掺杂。</p>
+<p>例如：400nm的箱式注入，总剂量为 1<em>10^14 cm^-2，对应的掺杂区域原子浓度为 2</em>10^18 cm^-3.</p>
+<p><strong>n型注入</strong>：注入氮和磷离子。</p>
+<ul>
+<li>对于<0001>的晶面，需要采用7°的角度抑制沟道效应，最少应大于5°。</li>
+<li>在高浓度注入（&gt; e15cm^-2）时，应该采用高温注入（~500℃），否则就算高温退火也无法修复晶格损伤。</li>
+<li>重掺杂n区域（&gt;&gt; e19cm^-3）应采用高温磷离子注入以进一步降低电阻。</li>
+<li>退火温度应该高于1600℃。（典型退火：Ar气氛30min退火。）</li>
+</ul>
+<p><strong>p型注入</strong>：硼和铝离子。</p>
+<ul>
+<li>硼因为具有异常的扩散，以及退火时会引起深层次缺陷，一般不采用。</li>
+<li>更高温退火（~1750℃）可以得到更好的结特性，例如降低二极管漏电流。</li>
+<li>高温注入重掺杂Al（~e19 cm^-3）的电阻率虽然相较于室温注入较低，但仍然比较大（~比n重掺杂区大100倍）。</li>
+</ul>
+<p>高温退火时，利用碳膜可以有效提高表面平整度。</p>
+<h3 id="刻蚀"><a href="#刻蚀" class="headerlink" title="刻蚀"></a>刻蚀</h3><p>SiC的湿法刻蚀非常困难。一般采用反应离子刻蚀（RIE）。</p>
+<p>相比于Si，SiC的刻蚀速率较低。</p>
+<p>反应中可以加入氧气和氩气，增强碳原子的去除。</p>
+<p>掩膜材料一般采用CVD淀积的二氧化硅。</p>
+<h3 id="热氧化"><a href="#热氧化" class="headerlink" title="热氧化"></a>热氧化</h3><p>SiC的热氧化消耗量是46%。与Si接近。例如，生长100nm的氧化层需要消耗46nm的SiC。</p>
+<p>热氧化之后的退火参数还需要进一步研究。</p>
+<p>即使经过工艺优化，沟道迁移率还是会受到高密度表面态影响。</p>
+<h3 id="金属化"><a href="#金属化" class="headerlink" title="金属化"></a>金属化</h3><p><strong>肖特基接触</strong>：没有重掺杂的情况下，大部分没有经过高温淀积在SiC上的金属，都是肖特基接触。</p>
+<p><strong>欧姆接触</strong>：由于SiC的禁带宽度较宽（3.26eV），在n型重掺杂区的欧姆接触需要金属功函数<4ev，在p型重掺杂区金属功函数需要 > 7 eV。</p>
+<p>常用：n型 Ni ，p型 Al/Ti.</p>
+<p>为了得到较低电阻率（&lt; e-6 Omega*cm^2），需要高温烧结（950~1000℃）。</p>
+<h2 id="论文：CMOS-Circuits-on-Silicon-Carbide-for-High-Temperature-Operation"><a href="#论文：CMOS-Circuits-on-Silicon-Carbide-for-High-Temperature-Operation" class="headerlink" title="论文：CMOS Circuits on Silicon Carbide for High Temperature Operation"></a>论文：CMOS Circuits on Silicon Carbide for High Temperature Operation</h2><p>工艺要点：</p>
+<ul>
+<li>衬底是100mm 4H-SiC n+。</li>
+<li>高温掺杂之后，进行室温的小剂量掺杂以调整阈值电压。</li>
+<li>栅极电极是n掺杂的多晶硅。</li>
+<li>为处理模拟信号，在旁边加入了一个电容。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//CMOS_paper_2014.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//CMOS_device_paper_2014.png" alt=""></p>
+<h2 id="论文：Scalable-SiC-CMOS-Technology-2022"><a href="#论文：Scalable-SiC-CMOS-Technology-2022" class="headerlink" title="论文：Scalable SiC CMOS Technology, 2022."></a>论文：Scalable SiC CMOS Technology, 2022.</h2><p>要点：为了实现CMOS中NMOS和PMOS的匹配，PMOS的尺寸（W）是NMOS的四倍。</p>
+<p>（具体W/L的值可以通过计算得到，后续的笔记再整理这一部分）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//SiC-CMOS.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//SiC-CMOS-sub.png" alt=""></p>
+<p><img src="https://cdn.jsdelivr.net/gh/bliu42/BlogImages//SiC-CMOS-Process.png" alt=""></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Semiconductor/" rel="tag"># Semiconductor</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/07/23/4H-SiC%E5%99%A8%E4%BB%B6/" rel="prev" title="4H-SiC长期高温IC器件">
+      <i class="fa fa-chevron-left"></i> 4H-SiC长期高温IC器件
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/09/23/%E8%87%AA%E6%88%91%E8%A1%A8%E9%9C%B2/" rel="next" title="关联精神分析角度下的自我表露实践反思">
+      关联精神分析角度下的自我表露实践反思 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MOS%E5%99%A8%E4%BB%B6%E7%89%B9%E6%80%A7"><span class="nav-text">MOS器件特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MOS%E5%99%A8%E4%BB%B6I-V%E7%89%B9%E6%80%A7"><span class="nav-text">MOS器件I&#x2F;V特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MOS%E7%9A%84%E9%A2%91%E7%8E%87%E7%89%B9%E6%80%A7"><span class="nav-text">MOS的频率特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MOS%E7%9A%84%E5%87%BB%E7%A9%BF"><span class="nav-text">MOS的击穿</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MOS%E5%99%A8%E4%BB%B6%E7%9A%84%E4%BA%8C%E9%98%B6%E6%95%88%E5%BA%94"><span class="nav-text">MOS器件的二阶效应</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SiC-CMOS-%E5%B7%A5%E8%89%BA"><span class="nav-text">SiC CMOS 工艺</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%A6%EF%BC%9A%E3%80%8A%E7%A2%B3%E5%8C%96%E7%A1%85%E6%8A%80%E6%9C%AF%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86%E2%80%94%E2%80%94%E7%94%9F%E9%95%BF%E3%80%81%E8%A1%A8%E5%BE%81%E3%80%81%E5%99%A8%E4%BB%B6%E5%92%8C%E5%BA%94%E7%94%A8%E3%80%8B%E7%AC%AC%E5%85%AD%E7%AB%A0-%E7%A2%B3%E5%8C%96%E7%A1%85%E5%99%A8%E4%BB%B6%E5%B7%A5%E8%89%BA"><span class="nav-text">书：《碳化硅技术基本原理——生长、表征、器件和应用》第六章 碳化硅器件工艺</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A6%BB%E5%AD%90%E6%B3%A8%E5%85%A5"><span class="nav-text">离子注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%BB%E8%9A%80"><span class="nav-text">刻蚀</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%83%AD%E6%B0%A7%E5%8C%96"><span class="nav-text">热氧化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%91%E5%B1%9E%E5%8C%96"><span class="nav-text">金属化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%EF%BC%9ACMOS-Circuits-on-Silicon-Carbide-for-High-Temperature-Operation"><span class="nav-text">论文：CMOS Circuits on Silicon Carbide for High Temperature Operation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BA%E6%96%87%EF%BC%9AScalable-SiC-CMOS-Technology-2022"><span class="nav-text">论文：Scalable SiC CMOS Technology, 2022.</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Tina Liu"
+      src="https://raw.githubusercontent.com/bliu42/BlogImages/main/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Tina Liu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">50</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="sidebar-button motion-element">
+    <a onclick="Chatra('openChat', true);"><i class="fa fa-comment"></i>
+    发消息给Tina！
+  </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/bliu42" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;bliu42" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/phoenixliu42@gmail.com" title="E-Mail → phoenixliu42@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://bgm.tv/user/319336" title="Bangumi → https:&#x2F;&#x2F;bgm.tv&#x2F;user&#x2F;319336" rel="noopener" target="_blank"><i class="fa fa-tv fa-fw"></i>Bangumi</a>
+      </span>
+  </div>
+  <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=865857567&auto=1&height=66"></iframe>
+
+
+
+      </div>
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-guitar"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Tina Liu</span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i>
+<span id="busuanzi_container_site_uv">
+  本站总访客数:<span id="busuanzi_value_site_uv"></span>&nbsp;&nbsp;| 
+</span>
+<span id="busuanzi_container_site_pv">
+    &nbsp;本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+</div>
+</div>
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+  <script>
+    (function(d, w, c) {
+      w.ChatraID = 'WiN24LdQtE4tduLHp';
+      var s = d.createElement('script');
+      w[c] = w[c] || function() {
+        (w[c].q = w[c].q || []).push(arguments);
+      };
+      s.async = false;
+      s.src = 'https://call.chatra.io/chatra.js';
+      if (d.head) d.head.appendChild(s);
+    })(document, window, 'Chatra');
+  </script>
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+  <script async src="/js/cursor/fireworks.js"></script>
+
+</body>
+</html>
